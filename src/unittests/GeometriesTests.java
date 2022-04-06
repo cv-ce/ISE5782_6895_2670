@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import geometries.Cylinder;
+//import geometries.Cylinder;
 import geometries.Geometries;
 import geometries.Plane;
 import geometries.Sphere;
 import geometries.Triangle;
-import geometries.Tube;
+//import geometries.Tube;
 
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-import static primitives.Util.*;
+//import static primitives.Util.*;
 
 
 /**
@@ -27,9 +27,9 @@ import static primitives.Util.*;
 public class GeometriesTests 
 {
 
-	/**
+	/*/**
 	 * Test method for {@link geometries.Geometries#add(geometries.Intersectable[])}.
-	 */
+	 *
 	@Test
 	public void testAdd() 
 	{
@@ -42,9 +42,9 @@ public class GeometriesTests
 			//Cylinder cylinder = new Cylinder(2, new Ray(new Point3D(1, 4, -2),new Vector(new Point3D(1, 0, 2))), 15);
 			
 			Geometries collection= new Geometries(sphere, triangle, plane);
-			//collection.add(sphere, triangle, plane/*, tube ,cylinder*/);
+			//collection.add(sphere, triangle, plane/*, tube ,cylinder*);
 			
-			collection.add(null); // add 0 things
+			//collection.add(null); // add 0 things
 			
 			assertEquals("the length of the list is worng", 3, collection.getIntsersectionPoints().size());
 			Triangle t = new Triangle(new Point(1,8,-6),new Point(1,0,0),new Point(1,0,2));
@@ -60,7 +60,7 @@ public class GeometriesTests
 			fail("dont need throws exceptions!!!");
 		}
 		
-	}
+	}*/
 
 	/**
 	 * Test method for {@link geometries.Geometries#findIntsersections(primitives.Ray)}.

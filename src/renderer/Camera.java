@@ -50,30 +50,30 @@ public class Camera {
 	
 	/**
 	 * returns a ray from the camera to pixel Pij
-	 * @param nX - resolution of pixel in 'x'
-	 * @param nY - resolution of pixel in 'y'
+	 * @param nX - amount of pixels in 'x'
+	 * @param nY - amount of pixels in 'y'
 	 * @param j - column's index
 	 * @param i - row's index
 	 * @return
 	 * @throws IllegalArgumentException
 	 */
 	public Ray constructRayThroughPixel(int nX, int nY, int j, int i) throws IllegalArgumentException {
-		return null;
-		/*Point Pc;
+		//return null;
+		Point pCenter;
 		if (Util.isZero(distance))
-			Pc = location;
+			pCenter = location;
 		else
-			Pc = location.add(vTo.scale(distance));
+			pCenter = location.add(vTo.scale(distance));
 		
-		double Ry = height/nY;
-		double Rx = width/nX;
+		double Ry = height/nY;//length of a pixel
+		double Rx = width/nX;//width of a pixel
 		double Yi = (i-(nY-1)/2d)*Ry;
 		double Xj = (j-(nX-1)/2d)*Rx;
 		
 		if(Util.isZero(Xj) && Util.isZero(Yi))
-			return new Ray (location, Pc.subtract(location));
+			return new Ray (location, pCenter.subtract(location));
 		
-		Point Pij = Pc;
+		Point Pij = pCenter;
 		
 		if(!Util.isZero(Xj))
 			Pij = Pij.add(vRight.scale(Xj));
@@ -85,7 +85,7 @@ public class Camera {
 		
 		if(Pij.equals(location))
 			return new Ray(location, new Vector(Pij.getX(), Pij.getY(), Pij.getZ()));
-		return new Ray(location, Vij);*/
+		return new Ray(location, Vij);
 	}
 	
 	/**

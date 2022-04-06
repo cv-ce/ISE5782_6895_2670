@@ -18,7 +18,7 @@ import primitives.Ray;
 import primitives.Vector;
 import renderer.Camera;
 
-class CameraRaysVSGeometries {
+class CameraRays_Integ_Geometries {
 
 	/**
 	 * utility function, creates 9 rays from the camera to a 3x3 sized view plane
@@ -37,7 +37,7 @@ class CameraRaysVSGeometries {
 				catch (Exception e) 
 				{
 					// TODO Auto-generated catch block
-					fail("There can't zero rays");
+					fail("There can't be zero rays");
 				}
 			}
 		}
@@ -89,28 +89,28 @@ class CameraRaysVSGeometries {
 			//TC01:2 intersection points
 			Sphere sphere=new Sphere(new Point(0,0,-3), 1);
 			Camera camera = new Camera(new Point(0,0,0), new Vector(0,0,-1), new Vector(0,1,0)).setVPDistance(1).setVPSize(3, 3);
-			assertEquals("Number of intersections isn't correct", 2, findIntersectionPoints(camera, sphere).size());
+			assertEquals("Number of intersections is incorrect", 2, findIntersectionPoints(camera, sphere).size());
 
 		
 			//TC02:18 intersection points
 			sphere=new Sphere(new Point(0,0,-2.5), 2.5);
 			camera = new Camera(new Point(0,0,0.5), new Vector(0,0,-1), new Vector(0,1,0)).setVPDistance(1).setVPSize(3, 3);	
-			assertEquals("Number of intersections isn't correct", 18, findIntersectionPoints(camera, sphere).size());
+			assertEquals("Number of intersections is incorrect", 18, findIntersectionPoints(camera, sphere).size());
 		
 			//TC03:10 intersection points
 			sphere=new Sphere(new Point(0,0,-2), 2);
 			//same camera like tc02
-			assertEquals("Number of intersections isn't correct", 10, findIntersectionPoints(camera, sphere).size());
+			assertEquals("Number of intersections is incorrect", 10, findIntersectionPoints(camera, sphere).size());
 		
 			//TC04:9 intersection points
 			sphere = new Sphere(new Point(0, 0, 0), 4);
 			camera = new Camera(new Point(0, 0, 0), new Vector(0,0,-1), new Vector(0,1,0)).setVPDistance(1).setVPSize(3, 3);
-			assertEquals("Number of intersections isn't correct", 9, findIntersectionPoints(camera, sphere).size());	
+			assertEquals("Number of intersections is incorrect", 9, findIntersectionPoints(camera, sphere).size());	
 		
 			//TC05:0 intersection points
 			sphere=new Sphere(new Point(0,0,1), 0.5);
 			camera = new Camera(new Point(0,0,0.5), new Vector(0,0,-1), new Vector(0,1,0)).setVPDistance(1).setVPSize(3, 3);	
-			assertNull("Number of intersections isn't correct", findIntersectionPoints(camera, sphere));
+			assertNull("Number of intersections is incorrect", findIntersectionPoints(camera, sphere));
 		
 		}
 		catch(Exception ex)
@@ -132,17 +132,17 @@ class CameraRaysVSGeometries {
 			//TC01:9 intersection points
 			Plane plane =new Plane(new Point(0,2,0), new Vector(0,1,0));
 			Camera camera =new Camera(new Point (0, 0, 0), new Vector(0,1,0) , new Vector(0,0,-1)).setVPDistance(1).setVPSize(3, 3);
-			assertEquals("Number of intersections isn't correct", 9, findIntersectionPoints(camera, plane).size());	
+			assertEquals("Number of intersections is incorrect", 9, findIntersectionPoints(camera, plane).size());	
 
 			//TC02:9 intersection points	
 			plane =new Plane(new Point(2,0,0),new Vector(1,2,-0.5));
 			//same camera
-			assertEquals("Number of intersections isn't correct", 9, findIntersectionPoints(camera, plane).size());	
+			assertEquals("Number of intersections is incorrect", 9, findIntersectionPoints(camera, plane).size());	
 
 			//TC03:6 intersection points
 			plane =new Plane(new Point(2,0,0), new Vector(1,1,0));
 			//same camera
-			assertEquals("Number of intersections isn't correct", 6, findIntersectionPoints(camera, plane).size());	
+			assertEquals("Number of intersections is incorrect", 6, findIntersectionPoints(camera, plane).size());	
 		} 
 		catch (Exception e) 
 		{
@@ -164,12 +164,12 @@ class CameraRaysVSGeometries {
 			//TC01:1 intersection points
 			Triangle triangle=new Triangle(new Point(0,1,-2),new Point(1,-1,-2),new Point(-1,-1,-2));
 			Camera camera=new Camera(new Point(0, 0, 0), new Vector(0,0,-1), new Vector(0,1,0)).setVPDistance(1).setVPSize(3, 3);
-			assertEquals("Number of intersections isn't correct", 1, findIntersectionPoints(camera, triangle).size());	
+			assertEquals("Number of intersections is incorrect", 1, findIntersectionPoints(camera, triangle).size());	
 			
 			//TC02:2 intersection points
 			triangle=new Triangle(new Point(0,20,-2),new Point(1,-1,-2),new Point(-1,-1,-2));
 			//same camera
-			assertEquals("Number of intersections isn't correct", 2, findIntersectionPoints(camera, triangle).size());	
+			assertEquals("Number of intersections is incorrect", 2, findIntersectionPoints(camera, triangle).size());	
 		} 
 		catch (Exception e) 
 		{
