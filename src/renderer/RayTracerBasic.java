@@ -2,6 +2,7 @@ package renderer;
 
 import java.util.List;
 
+import geometries.Intersectable.GeoPoint;
 import primitives.*;
 import lighting.*;
 import static primitives.Util.*;
