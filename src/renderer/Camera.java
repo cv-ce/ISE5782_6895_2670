@@ -1,11 +1,17 @@
 package renderer;
 
+import java.util.MissingResourceException;
+
+import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 import primitives.Util;
 
-public class Camera {
+public class Camera
+{
+	private ImageWriter image;
+	private RayTracerBase rayTracer;
 	private Point location;
 	private Vector vUp;
 	private Vector vRight;
@@ -88,6 +94,60 @@ public class Camera {
 		return new Ray(location, Vij);
 	}
 	
+	public void renderImage() throws MissingResourceException, IllegalArgumentException 
+	{
+		if (image == null)
+			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
+		if (rayTracer == null)
+			throw new MissingResourceException("this function must have values in all the fileds", "RayTracerBase", "rayTracer");
+		for (int i = 0; i < image.getNx(); i++)
+		{
+				for (int j = 0; j < image.getNy(); j++)	
+				{
+					if(numOfRays == 1 || numOfRays == 0)
+					{
+						Ray ray = camera.constructRayThroughPixel(image.getNx(), image.getNy(), j, i);
+						Color rayColor = rayTracer.traceRay(ray);
+						image.writePixel(j, i, rayColor); 
+					}
+					else
+					{	
+						List<Ray> rays = camera.constructBeamThroughPixel(image.getNx(), image.getNy(), j, i,numOfRays);
+						Color rayColor = rayTracer.traceRay(rays);
+						image.writePixel(j, i, rayColor); 
+					}
+					
+				}
+			}
+		
+	}
+	
+   public void printGrid(int interval, Color color)
+   {
+	    if (image == null)
+			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
+		
+
+	    for (int i = 0; i < image.getNx(); i++)
+	    {
+			for (int j = 0; j < image.getNy(); j++)	
+			{
+				if(i % interval == 0 || j % interval == 0)
+					image.writePixel(i, j, color); 
+			}
+	    }
+
+    }
+   
+   public void writeToImage()
+   {
+		if (image == null)
+			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
+		
+		image.writeToImage();
+	}
+
+	
 	/**
 	 * return location
 	 * @return
@@ -142,5 +202,21 @@ public class Camera {
 	 */
 	public double getDistance() {
 		return distance;
+	}
+
+	public ImageWriter getImage() {
+		return image;
+	}
+
+	public void setImage(ImageWriter image) {
+		this.image = image;
+	}
+
+	public RayTracerBase getRayTracer() {
+		return rayTracer;
+	}
+
+	public void setRayTracer(RayTracerBase rayTracer) {
+		this.rayTracer = rayTracer;
 	}
 }

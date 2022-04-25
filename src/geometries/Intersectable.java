@@ -12,7 +12,7 @@ import primitives.Ray;
  * @author barak epstein
  *
  */
-public interface Intersectable {
+public abstract class Intersectable {
 	
 	/**
 	 * returns intersections between 'ray' and a geometry

@@ -7,7 +7,7 @@ import primitives.Ray;
 import primitives.Util;
 import primitives.Vector;
 
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
 	final Point q0;
 	final Vector normal;

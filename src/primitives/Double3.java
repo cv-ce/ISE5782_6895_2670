@@ -1,6 +1,3 @@
-/**
- * 
- */
 package primitives;
 
 import static primitives.Util.*;
@@ -122,3 +119,4 @@ public class Double3 {
 	}
 
 }
+ 
