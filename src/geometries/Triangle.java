@@ -15,7 +15,7 @@ public class Triangle extends Polygon {
 	 * @param p2
 	 * @param p3
 	 */
-	public Triangle(Point p1, Point p2, Point p3) {
+	public Triangle(Point p1, Point p2, Point p3)throws IllegalArgumentException  {
 		super(p1, p2, p3);
 	}
 	
@@ -36,7 +36,7 @@ public class Triangle extends Polygon {
 
 	/**
 	 * returns intersection points between a triangle and a given ray
-	 */
+	 
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
@@ -63,5 +63,5 @@ public class Triangle extends Polygon {
 			if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
 				return null; //there are no intersections
 			return null;		
-	}
+	}*/
 }

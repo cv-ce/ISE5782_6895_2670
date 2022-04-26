@@ -19,12 +19,18 @@ public abstract class Intersectable {
 	 * @param ray
 	 * @return
 	 */
-	public abstract List<Point> findIntersections(Ray ray);
+	public List<Point> findIntersections(Ray ray) {
+	    var geoList = findGeoIntersections(ray);
+	    return geoList == null ? null
+	                           : geoList.stream().map(gp -> gp.point).toList();
+	}
+
 	
-	List<GeoPoint> findGeoIntersections (Ray ray) throws IllegalArgumentException
+	public List<GeoPoint> findGeoIntersections (Ray ray) throws IllegalArgumentException
 	{
 		return findGeoIntersectionsHelper(ray);
 	}
+	
 	protected abstract List<GeoPoint> findGeoIntersectionsHelper (Ray ray) throws IllegalArgumentException;
 	
 	public static class GeoPoint 

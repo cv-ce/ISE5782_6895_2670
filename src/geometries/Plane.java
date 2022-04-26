@@ -66,10 +66,16 @@ public class Plane extends Geometry {
 	public String toString() {
 		return "Plane [q0=" + q0 + ", normal=" + normal + "]";
 	}
+
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	/**
 	 * return the intersection points between a plane and a given ray
-	 */
+	 
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
@@ -91,4 +97,5 @@ public class Plane extends Geometry {
 			return null;
 		}
 	}
+	*/
 }

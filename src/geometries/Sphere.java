@@ -7,7 +7,7 @@ import primitives.Ray;
 import primitives.Vector;
 import primitives.Util;
 
-public class Sphere implements Intersectable{
+public class Sphere extends Intersectable{
 
 	final Point center;
 	final double radius;
@@ -52,9 +52,15 @@ public class Sphere implements Intersectable{
 		return this.radius;
 	}
 
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * return the intersection points between a sphere and a given ray
-	 */
+	 
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
@@ -78,4 +84,5 @@ public class Sphere implements Intersectable{
 		else
 			return List.of(ray.getPoint(t2));	
 		}
+		*/
 }

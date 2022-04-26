@@ -1,6 +1,8 @@
 package primitives;
 
 import java.util.List;
+import geometries.Intersectable.GeoPoint;
+
 
 public class Ray {
 
@@ -69,16 +71,25 @@ public class Ray {
 	 * @param points List<Point3D> value
 	 * @return Point3D value
 	 * */
-	public Point findClosestPoint (List<Point> points)
+	public Point findClosestPoint(List<Point> points) {
+	    return points == null || points.isEmpty() ? null
+	           : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
+	}
+
+	
+	public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections)
 	{
-		if(points == null)
+		
+		if(intersections == null)
 			return null;
-		Point closet = points.get(0);
-		for (Point point : points) 
+		GeoPoint closet = intersections.get(0);
+		for (GeoPoint geoPoint : intersections) 
 		{
-			if(point.distance(p0) < closet.distance(p0))
-				closet= point;
+			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
+				closet= geoPoint;
+			
 		}
 		return closet;
 	}
+	
 }

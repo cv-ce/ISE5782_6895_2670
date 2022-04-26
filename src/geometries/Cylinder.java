@@ -43,11 +43,4 @@ public class Cylinder extends Tube implements Geometry{
 		return this.height;
 	}
 
-	/**
-	 * returns intersection points between a cylinder and a given ray
-	 */
-	@Override
-	public List<Point> findIntersections(Ray ray) {
-		return null;
-	}
 }

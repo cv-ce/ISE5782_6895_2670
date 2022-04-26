@@ -44,7 +44,7 @@ public class Geometries {
 	}
 	
 	/**
-	 * returns the intersections between 'ray' and a geometry
+	 * returns the intersections between 'ray' and a geometry              צריך למחוק אותה???????????
 	 */
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{	
@@ -60,4 +60,6 @@ public class Geometries {
 			return null;
 		return temp;
 		}
+		
+	
 }

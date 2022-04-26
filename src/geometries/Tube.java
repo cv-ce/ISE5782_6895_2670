@@ -6,7 +6,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-public class Tube implements Intersectable{
+public class Tube extends Intersectable{
 
 	final double radius;
 	final Ray axis;
@@ -53,11 +53,11 @@ public class Tube implements Intersectable{
 		return this.axis;
 	}
 
-	/**
-	 * returns intersection points between a tube and a given ray
-	 */
 	@Override
-	public List<Point> findIntersections(Ray ray) {
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
+		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
 }

@@ -94,8 +94,7 @@ public class Camera
 		return new Ray(location, Vij);
 	}
 	
-	public void renderImage() throws MissingResourceException, IllegalArgumentException 
-	{
+	public void renderImage() throws MissingResourceException, IllegalArgumentException {
 		if (image == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
 		if (rayTracer == null)
@@ -104,24 +103,21 @@ public class Camera
 		{
 				for (int j = 0; j < image.getNy(); j++)	
 				{
-					if(numOfRays == 1 || numOfRays == 0)
-					{
-						Ray ray = camera.constructRayThroughPixel(image.getNx(), image.getNy(), j, i);
-						Color rayColor = rayTracer.traceRay(ray);
-						image.writePixel(j, i, rayColor); 
-					}
-					else
-					{	
-						List<Ray> rays = camera.constructBeamThroughPixel(image.getNx(), image.getNy(), j, i,numOfRays);
-						Color rayColor = rayTracer.traceRay(rays);
-						image.writePixel(j, i, rayColor); 
-					}
+					Color rayColor = castRay(j, i);
+					image.writePixel(j,i, rayColor);
 					
 				}
 			}
 		
 	}
 	
+   private Color castRay(int j,int i) 
+	
+	{
+				Ray ray = Camera.constructRayThroughPixel(j,i);
+				Color color = rayTracer.traceRay(ray);
+	}
+   
    public void printGrid(int interval, Color color)
    {
 	    if (image == null)
@@ -208,15 +204,17 @@ public class Camera
 		return image;
 	}
 
-	public void setImage(ImageWriter image) {
+	public Camera setImage(ImageWriter image) {
 		this.image = image;
+		return this;
 	}
 
 	public RayTracerBase getRayTracer() {
 		return rayTracer;
 	}
 
-	public void setRayTracer(RayTracerBase rayTracer) {
+	public Camera setRayTracer(RayTracerBase rayTracer) {
 		this.rayTracer = rayTracer;
+		return this;
 	}
 }
