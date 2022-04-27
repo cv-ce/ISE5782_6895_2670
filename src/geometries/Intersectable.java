@@ -43,7 +43,7 @@ public abstract class Intersectable {
 	     * constructor for geo point
 	     * 
 	     * @param geometry Geometry
-	     * @param point Point3D
+	     * @param point Point
 	     * */
 	    public GeoPoint(Geometry geometry,Point point)
 	    {

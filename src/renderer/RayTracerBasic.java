@@ -37,9 +37,10 @@ public class RayTracerBasic extends RayTracerBase
 	@Override
 	public Color traceRay(Ray ray) 
 	{
-
-			GeoPoint closestPoint = findClosestIntersection(ray);
-			return closestPoint == null ? myscene.background : calcColor(closestPoint, ray);
+           var intersections=myscene.geometries.findGeoIntersections(ray);
+           if (intersections==null) return myscene.background;
+			GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
+			return calcColor(closestPoint);
 	}
 	
 	private Color calcColor(Point intersection) throws IllegalArgumentException 
