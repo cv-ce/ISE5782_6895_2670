@@ -2,9 +2,10 @@ package geometries;
 
 import primitives.Point;
 import primitives.Color;
+import primitives.Material;
 import primitives.Vector;
 
-public abstract class Geometry extends Intersectable{
+public abstract class Geometry extends Intersectable {
 
 	/**
 	 * returns the vector which is the normal to the geometry in point 'p'
@@ -12,27 +13,30 @@ public abstract class Geometry extends Intersectable{
 	 * @return
 	 */
 	public abstract Vector getNormal(Point p);
-	/**
-	 * @param emission
-	 * @return Color 
-	 */
+	
 	protected Color emission=Color.BLACK;
+	private Material material = new Material();
+	
 	/**
-	 * getter function for the Material filed in geometry class
-	 * 
-	 * @author Shirel Avivi 325112670and Chaya Epstein
-	 * @return the material
+	 * returns 'material'
 	 */
-	public Color getEmission()
+	public Material getMaterial() 
 	{
-		return emission;
+		return material;
 	}
+
 	/**
-	 * setter function for the color filed and return this- geometry class
-	 * 
-	 * @author Shirel Avivi 325112670and Chaya Epstein
-	 * @return the geometry-this
-	 * */
+	 * sets 'material', returns the object (Builder pattern)
+	 */
+	public Geometry setMaterial(Material material) 
+	{
+		this.material = material;
+		return this;
+	}
+
+	/**
+	 * sets 'emission', returns the object (Builder pattern)
+	 */
 	public Geometry setEmission(Color emission) 
 	{
 		this.emission = emission;

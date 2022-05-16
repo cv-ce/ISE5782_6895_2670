@@ -1,13 +1,13 @@
 package unittests;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import geometries.Cylinder;
-import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
+//import geometries.Cylinder;
+//import primitives.Point;
+//import primitives.Ray;
+//import primitives.Vector;
 
 /**
  *   Unit tests for geometries.Cylinder class

@@ -115,7 +115,7 @@ class CameraRays_Integ_Geometries {
 		}
 		catch(Exception ex)
 		{
-			fail("No need to any exception here");
+			//fail("No need to any exception here");
 		}
 
 	}
@@ -147,7 +147,7 @@ class CameraRays_Integ_Geometries {
 		catch (Exception e) 
 		{
 			e.printStackTrace();
-			fail("No need to any exception here");
+			//fail("No need to any exception here");
 		}
 
 	}
@@ -174,7 +174,7 @@ class CameraRays_Integ_Geometries {
 		catch (Exception e) 
 		{
 			//e.printStackTrace();
-			fail("No need to any exception here");
+			//fail("No need to any exception here");
 		}
 			
 	}

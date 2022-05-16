@@ -5,7 +5,7 @@ import java.util.List;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-import primitives.Util;
+//import primitives.Util;
 
 public class Sphere extends Intersectable{
 

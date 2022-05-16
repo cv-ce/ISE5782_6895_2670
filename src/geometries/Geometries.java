@@ -11,7 +11,7 @@ import primitives.Ray;
  *author Shirel Avivi 325112670 and Chaya Epstein
  *
  */
-public class Geometries {
+public class Geometries extends Intersectable{
 	
 	List<Intersectable> geometriesLst;
 	
@@ -44,7 +44,7 @@ public class Geometries {
 	}
 	
 	/**
-	 * returns the intersections between 'ray' and a geometry              öøéê ìîçå÷ àåúä???????????
+	 * returns the intersections between 'ray' and a geometry              ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½???????????
 	 */
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{	
@@ -59,7 +59,23 @@ public class Geometries {
 		if (temp.isEmpty())
 			return null;
 		return temp;
-		}
-		
+	}
 	
+	/**
+	 * 
+	 */
+	@Override
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+	List<GeoPoint> temp = new ArrayList<GeoPoint>();
+	for (Intersectable intersectable : geometriesLst)
+	{
+	List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
+	if (intersection != null)
+	temp.addAll(intersection);
+	}
+
+	if (temp.isEmpty())
+	return null;
+	return temp;
+	}
 }

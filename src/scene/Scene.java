@@ -1,23 +1,29 @@
 package scene;
 
 import lighting.AmbientLight;
+import lighting.LightSource;
+
+import java.util.LinkedList;
+import java.util.List;
+
 import geometries.Geometries;
 import primitives.Color;
 
 /**
  * class Scene for PDS
  * 
- * @author Shirel Avivi325112670 and Chaya Epstein
+ * @author Shirel Avivi 325112670 and Chaya Epstein
  */
 public class Scene 
 {
 	public String name;
 	public Color background = Color.BLACK;
 	public AmbientLight ambientLight = new AmbientLight();
-	public Geometries geometries;
+	public Geometries geometries;// = new Geometries();
+	public List<LightSource> lights = new LinkedList();
 	
 	/**
-	 * constructor 
+	 * ctor 
 	 * 
 	 * @author Shirel Avivi325112670 and Chaya Epstein
 	 * @param name
@@ -29,8 +35,7 @@ public class Scene
 
 	
 	/**
-	 * setter function to background, and return this for builder pattern
-	 * 
+	 * sets 'background', returns the object (Builder pattern) 
 	 * @author Shirel Avivi325112670 and Chaya Epstein
 	 * @param background the background to set
 	 */
@@ -42,8 +47,7 @@ public class Scene
 	
 
 	/**
-	 * setter function to ambientLight, and return this for builder pattern
-	 * 
+	 * sets 'ambientLight', returns the object (Builder pattern)
 	 * @author Shirel Avivi 325112670 and Chaya Epstein
 	 * @param ambientLight the ambientLight to set
 	 */
@@ -56,8 +60,7 @@ public class Scene
 	
 
 	/**
-	 * setter function to geometries, and return this for builder pattern
-	 * 
+	 * sets 'geometries', returns the object (Builder pattern)
 	 * @author Shirel Avivi325112670 and Chaya Epstein
 	 * @param geometries the geometries to set
 	 */
@@ -67,5 +70,13 @@ public class Scene
 		return this;
 	}
 	
-
+	/**
+	 * sets 'lights', returns the object (Builder pattern)
+	 */
+	public Scene setLights(List<LightSource> lights) 
+	{
+		this.lights = lights;
+		return this;
+	}
+	
 }

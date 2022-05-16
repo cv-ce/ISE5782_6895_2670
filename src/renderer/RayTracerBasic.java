@@ -2,6 +2,7 @@ package renderer;
 
 import java.util.List;
 
+import geometries.Intersectable;
 import geometries.Intersectable.GeoPoint;
 import primitives.*;
 import lighting.*;
@@ -20,12 +21,10 @@ import scene.Scene;
  * 
  * @author Shirel Avivi and Chaya Epstein
  */
-public class RayTracerBasic extends RayTracerBase 
-{
+public class RayTracerBasic extends RayTracerBase {
 	
 	/**
 	 * constructor of RayTracerBasic
-	 * 
 	 * @author Shirel Avivi and Chaya Epstein
 	 * @param myscene Scene value
 	 */
@@ -34,21 +33,29 @@ public class RayTracerBasic extends RayTracerBase
 		super(myscene);
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public Color traceRay(Ray ray) 
 	{
-           var intersections=myscene.geometries.findGeoIntersections(ray);
-           if (intersections==null) return myscene.background;
-			GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
-			return calcColor(closestPoint);
+		var intersections = myscene.geometries.findGeoIntersections(ray);
+		if (intersections == null) 
+			return myscene.background;
+		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
+		return calcColor(closestPoint, ray);
 	}
 	
-	private Color calcColor(Point intersection) throws IllegalArgumentException 
+	/**
+	 * returns a point's color
+	 */
+	private Color calcColor(Intersectable.GeoPoint point, Ray ray) {
+		return myscene.ambientLight.getIntensity()
+		.add(point.geometry.getEmission())
+		.add(calcLocalEffects(point, ray));//we send the ray(v) for the specular light calculation -v*r
+		}
+	/*private Color calcColor(Point intersection) throws IllegalArgumentException 
 	{
-		return AmbientLight;
-
-	}
-	
-	
-	
+		return myscene.ambientLight.getIntensity();
+	}	*/
 }

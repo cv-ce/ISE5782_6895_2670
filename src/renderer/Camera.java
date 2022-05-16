@@ -10,8 +10,6 @@ import primitives.Util;
 
 public class Camera
 {
-	private ImageWriter image;
-	private RayTracerBase rayTracer;
 	private Point location;
 	private Vector vUp;
 	private Vector vRight;
@@ -19,6 +17,8 @@ public class Camera
 	private double height;
 	private double width;
 	private double distance;
+	private ImageWriter image;
+	private RayTracerBase rayTracer;
 	
 	/**
 	 * constructor
@@ -64,7 +64,6 @@ public class Camera
 	 * @throws IllegalArgumentException
 	 */
 	public Ray constructRayThroughPixel(int nX, int nY, int j, int i) throws IllegalArgumentException {
-		//return null;
 		Point pCenter;
 		if (Util.isZero(distance))
 			pCenter = location;
@@ -94,36 +93,36 @@ public class Camera
 		return new Ray(location, Vij);
 	}
 	
-	public void renderImage() throws MissingResourceException, IllegalArgumentException {
+	/**
+	 * 
+	 * @throws MissingResourceException
+	 * @throws IllegalArgumentException
+	 */
+	public void renderImage() {// throws MissingResourceException, IllegalArgumentException {
 		if (image == null)
-			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
+			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
 		if (rayTracer == null)
-			throw new MissingResourceException("this function must have values in all the fileds", "RayTracerBase", "rayTracer");
+			throw new MissingResourceException("All fields must be initialized with values", "RayTracerBase", "rayTracer");
 		for (int i = 0; i < image.getNx(); i++)
 		{
-				for (int j = 0; j < image.getNy(); j++)	
-				{
-					Color rayColor = castRay(j, i);
-					image.writePixel(j,i, rayColor);
-					
-				}
+			for (int j = 0; j < image.getNy(); j++)	
+			{
+				Color rayColor = castRay(image.getNx(),image.getNy(), j, i);
+				image.writePixel(j,i, rayColor);	
 			}
-		
+		}
 	}
 	
-   private Color castRay(int j,int i) 
-	
-	{
-				Ray ray = Camera.constructRayThroughPixel(j,i);
-				Color color = rayTracer.traceRay(ray);
-	}
-   
+	/**
+	* creates a colored grid
+	* @param interval
+	* @param color
+	*/
    public void printGrid(int interval, Color color)
    {
 	    if (image == null)
-			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
-		
-
+			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
+	    
 	    for (int i = 0; i < image.getNx(); i++)
 	    {
 			for (int j = 0; j < image.getNy(); j++)	
@@ -135,14 +134,29 @@ public class Camera
 
     }
    
+   /**
+    * creates an image
+    */
    public void writeToImage()
    {
 		if (image == null)
-			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "imageWriter");
+			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
 		
 		image.writeToImage();
 	}
 
+	/**
+	 *  
+	 * @param j
+	 * @param i
+	 * @return
+	 */
+	private Color castRay(int nX, int nY, int j,int i) 
+	{
+		Ray ray = constructRayThroughPixel(nX, nY, j,i);
+		Color color = rayTracer.traceRay(ray);
+		return color;
+	}
 	
 	/**
 	 * return location
@@ -200,19 +214,37 @@ public class Camera
 		return distance;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ImageWriter getImage() {
 		return image;
 	}
 
+	/**
+	 * 
+	 * @param image
+	 * @return
+	 */
 	public Camera setImage(ImageWriter image) {
 		this.image = image;
 		return this;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public RayTracerBase getRayTracer() {
 		return rayTracer;
 	}
 
+	/**
+	 * 
+	 * @param rayTracer
+	 * @return
+	 */
 	public Camera setRayTracer(RayTracerBase rayTracer) {
 		this.rayTracer = rayTracer;
 		return this;

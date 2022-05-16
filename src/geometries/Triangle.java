@@ -1,11 +1,11 @@
 package geometries;
 
-import java.util.List;
+//import java.util.List;
 
 import primitives.Point;
-import primitives.Ray;
-import primitives.Vector;
-import primitives.Util;
+//import primitives.Ray;
+//import primitives.Vector;
+//import primitives.Util;
 
 public class Triangle extends Polygon {
 

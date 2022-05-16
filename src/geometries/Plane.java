@@ -4,7 +4,7 @@ import java.util.List;
 
 import primitives.Point;
 import primitives.Ray;
-import primitives.Util;
+//import primitives.Util;
 import primitives.Vector;
 
 public class Plane extends Geometry {

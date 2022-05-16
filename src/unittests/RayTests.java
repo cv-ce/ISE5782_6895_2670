@@ -20,26 +20,29 @@ public class RayTests
 		try 
 		{
 			// =============== Boundary Values Tests ==================
+			
 			Ray ray = new Ray(new Point(0,0,1), new Vector(1,0,0));
 			
 			Point p1 = new Point(1,0,0);
 			Point p2 = new Point(2,0,0);
 			Point p3 = new Point(3,0,0);
 
-			//The first point is closest to the beginning of the foundation
+			//TC01: The first point is the closest to the beginning of the ray
 			List<Point >points = List.of(p1,p2,p3);
 			assertEquals("", p1, ray.findClosestPoint(points));
 			
-			//The last point is closest to the beginning of the foundation
+			//TC02: The last point is the closest to the beginning of the ray
 			points = List.of(p2,p3,p1);
 			assertEquals("", p1, ray.findClosestPoint(points));
 			
-			//An empty list
+			//TC03: An empty list
 			points =null;
 			assertEquals("", null, ray.findClosestPoint(points));
 			
+			
 			// ============ Equivalence Partitions Tests ==============
-			//A point in the middle of the list is closest to the beginning of the fund
+			
+			//TC04: A point in the middle of the list is the closest to the beginning of the ray
 			points = List.of(p2,p1,p3);
 			assertEquals("", p1, ray.findClosestPoint(points));	
 		}

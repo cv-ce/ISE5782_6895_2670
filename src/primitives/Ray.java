@@ -66,8 +66,7 @@ public class Ray {
 	}
 	
 	/**
-	 * The function returns the point closest to the beginning of the beam
-	 * from all the intersection points of the resulting list.
+	 * returns the point which is the closest to the beginning of the ray, out of the intersection points list.
 	 * @param points List<Point3D> value
 	 * @return Point3D value
 	 * */
@@ -76,10 +75,12 @@ public class Ray {
 	           : findClosestGeoPoint(points.stream().map(p -> new GeoPoint(null, p)).toList()).point;
 	}
 
-	
-	public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections)
-	{
-		
+	/**
+	 * 
+	 * @param intersections
+	 * @return
+	 */
+	public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
 		if(intersections == null)
 			return null;
 		GeoPoint closet = intersections.get(0);
@@ -87,9 +88,7 @@ public class Ray {
 		{
 			if(geoPoint.point.distance(p0) < closet.point.distance(p0))
 				closet= geoPoint;
-			
 		}
 		return closet;
 	}
-	
 }
