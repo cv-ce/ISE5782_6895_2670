@@ -24,6 +24,37 @@ import scene.Scene;
 public class RayTracerBasic extends RayTracerBase {
 	
 	/**
+	 * 
+	 */
+	private static final double DELTA = 0.1;
+	
+	private static final int MAX_CALC_COLOR_LEVEL = 10;
+	private static final double MIN_CALC_COLOR_K = 0.001;
+
+	/**
+	 * 
+	 * @param gp
+	 * @param l
+	 * @param n
+	 * @return
+	 */
+	private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light) {
+		Vector lightDirection = l.scale(-1); // from point to light source
+//		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
+//		Point3D point = geopoint.point.add(delta);// moving the point
+		Ray lightRay = new Ray(gp.point, lightDirection, n); // refactored ray head move
+		List<GeoPoint> intersections = myscene.geometries.findGeoIntersections(lightRay);
+		if (intersections == null) 
+			return true;
+		double lightDistance = light.getDistance(geopoint.point);
+		for (GeoPoint gp : intersections) 
+		{
+			if (alignZero(gp.point.distance(geopoint.point) - lightDistance) <= 0 && gp.geometry.getMaterial().KT == 0)
+				return false;
+		}
+		return true;
+	}
+	/**
 	 * constructor of RayTracerBasic
 	 * @author Shirel Avivi and Chaya Epstein
 	 * @param myscene Scene value

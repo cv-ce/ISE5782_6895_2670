@@ -46,6 +46,7 @@ public class Geometries extends Intersectable{
 	/**
 	 * returns the intersections between 'ray' and a geometry              ���� ����� ����???????????
 	 */
+	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{	
 		List<Point> temp = new ArrayList<Point>();
