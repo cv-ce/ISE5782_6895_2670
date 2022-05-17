@@ -159,7 +159,7 @@ public class Camera
     * creates an image
     */
    public void writeToImage()
-   {
+   {   
 		if (imageWriter == null)
 			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
 		
