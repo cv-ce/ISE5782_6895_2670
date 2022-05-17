@@ -4,6 +4,7 @@ import java.util.List;
 
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 //import primitives.Util;
 import primitives.Vector;
 
@@ -68,10 +69,30 @@ public class Plane extends Geometry {
 	}
 
 	@Override
-	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
-		// TODO Auto-generated method stub
-		return null;
+	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
+		double nv = normal.dotProduct(ray.getDir());
+		if (Util.isZero(nv))
+		{
+			return null;
+		}
+		
+		try 
+		{
+			Vector pSubtractP0 = q0.subtract(ray.getP0());
+			double t = Util.alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+			if(t <= 0)
+			{
+				return null;
+			}
+			return List.of(new GeoPoint(this,ray.getPoint(t)));
+		}
+		catch(Exception ex) 
+		{
+			return null;
+		}
 	}
+
 	
 	/**
 	 * return the intersection points between a plane and a given ray

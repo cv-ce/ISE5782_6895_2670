@@ -26,29 +26,28 @@ public class Material {
 	/**
 	 * sets 'kD', return the object (Builder pattern)
 	 */
-	public Material setKD(Double3 kD) 
+	public Material setKd(Double3 kD) 
 	{
 		this.kD = kD;
 		return this;
 	}
 
-	public Material setKD(double kD) 
+	public Material setKd(double kD) 
 	{
 		this.kD = new Double3(kD);
 		return this;
 	}
-
 	
 	/**
 	 * sets 'kS', return the object (Builder pattern)
 	 */
-	public Material setKS(Double3 kS) 
+	public Material setKs(Double3 kS) 
 	{
 		this.kS = kS;
 		return this;
 	}
 
-	public Material setKS(double kS) 
+	public Material setKs(double kS) 
 	{
 		this.kD = new Double3(kS);
 		return this;
@@ -58,7 +57,7 @@ public class Material {
 	/**
 	 * sets 'nShininess', return the object (Builder pattern)
 	 */
-	public Material setNShininess(int nShininess) 
+	public Material setShininess(int nShininess) 
 	{
 		this.nShininess = nShininess;
 		return this;

@@ -38,7 +38,7 @@ public class RayTracerBasic extends RayTracerBase {
 	 * @param n
 	 * @return
 	 */
-	private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light) {
+	/*private boolean unshaded(GeoPoint gp, Vector l, Vector n, LightSource light) {
 		Vector lightDirection = l.scale(-1); // from point to light source
 //		Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : -DELTA);// where we need to move the point
 //		Point3D point = geopoint.point.add(delta);// moving the point
@@ -53,7 +53,7 @@ public class RayTracerBasic extends RayTracerBase {
 				return false;
 		}
 		return true;
-	}
+	}*/
 	/**
 	 * constructor of RayTracerBasic
 	 * @author Shirel Avivi and Chaya Epstein
@@ -74,19 +74,19 @@ public class RayTracerBasic extends RayTracerBase {
 		if (intersections == null) 
 			return myscene.background;
 		GeoPoint closestPoint = ray.findClosestGeoPoint(intersections);
-		return calcColor(closestPoint, ray);
+		return calcColor(closestPoint.point/*, ray*/);
 	}
 	
 	/**
 	 * returns a point's color
 	 */
-	private Color calcColor(Intersectable.GeoPoint point, Ray ray) {
+	/*private Color calcColor(Intersectable.GeoPoint point, Ray ray) {
 		return myscene.ambientLight.getIntensity()
 		.add(point.geometry.getEmission())
 		.add(calcLocalEffects(point, ray));//we send the ray(v) for the specular light calculation -v*r
-		}
-	/*private Color calcColor(Point intersection) throws IllegalArgumentException 
+		}*/
+	private Color calcColor(Point intersection) throws IllegalArgumentException 
 	{
 		return myscene.ambientLight.getIntensity();
-	}	*/
+	}	
 }

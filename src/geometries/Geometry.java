@@ -42,4 +42,12 @@ public abstract class Geometry extends Intersectable {
 		this.emission = emission;
 		return this;
 	}
+	
+	/**
+	 * returns 'material'
+	 */
+	public Color getEmission() 
+	{
+		return emission;
+	}
 }

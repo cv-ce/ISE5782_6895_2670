@@ -48,9 +48,9 @@ public class DirectionalLight extends Light implements LightSource {
 	/**
 	 * 
 	 */
-	@Override
+	/*@Override
 	public double getDistance(Double3 point) 
 	{
 		return Double.POSITIVE_INFINITY;
-	}
+	}*/
 }

@@ -17,7 +17,7 @@ public class Camera
 	private double height;
 	private double width;
 	private double distance;
-	private ImageWriter image;
+	private ImageWriter imageWriter;
 	private RayTracerBase rayTracer;
 	
 	/**
@@ -98,20 +98,41 @@ public class Camera
 	 * @throws MissingResourceException
 	 * @throws IllegalArgumentException
 	 */
-	public void renderImage() {// throws MissingResourceException, IllegalArgumentException {
-		if (image == null)
-			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
-		if (rayTracer == null)
-			throw new MissingResourceException("All fields must be initialized with values", "RayTracerBase", "rayTracer");
-		for (int i = 0; i < image.getNx(); i++)
+	public Camera renderImage() throws MissingResourceException, IllegalArgumentException
+	{
+       try 
+       {
+		if (imageWriter == null)
+			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "i");
+	    if (rayTracer == null)
+	     	throw new MissingResourceException("All fields must be initialized with values", "RayTracerBase", "r");
+		if (location == null) 
+	     	throw new MissingResourceException("All fields must be initialized with values", "Point", "p0");
+		if (vUp == null) 
+	     	throw new MissingResourceException("All fields must be initialized with values", "Vector", "vUp");
+		if (vTo == null) 
+	     	throw new MissingResourceException("All fields must be initialized with values", "Vector", "vTo");
+		if (vRight == null) 
+	     	throw new MissingResourceException("All fields must be initialized with values", "Vector", "vRight");
+
+        int nX=imageWriter.getNx();
+        int nY=imageWriter.getNy();
+        
+	    for (int i= 0; i< nX; i++)
 		{
-			for (int j = 0; j < image.getNy(); j++)	
+			for (int j = 0; j < nY; j++)	
 			{
-				Color rayColor = castRay(image.getNx(),image.getNy(), j, i);
-				image.writePixel(j,i, rayColor);	
-			}
-		}
-	}
+				imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
+		   }
+			
+	     }
+       }
+	   catch(MissingResourceException e)
+       {
+	    	throw new MissingResourceException("No implemented yet",e.getClassName(),e.getKey());
+       }
+       return this;
+}
 	
 	/**
 	* creates a colored grid
@@ -120,15 +141,15 @@ public class Camera
 	*/
    public void printGrid(int interval, Color color)
    {
-	    if (image == null)
+	    if (imageWriter == null)
 			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
 	    
-	    for (int i = 0; i < image.getNx(); i++)
+	    for (int i = 0; i < imageWriter.getNx(); i++)
 	    {
-			for (int j = 0; j < image.getNy(); j++)	
+			for (int j = 0; j < imageWriter.getNy(); j++)	
 			{
 				if(i % interval == 0 || j % interval == 0)
-					image.writePixel(i, j, color); 
+					imageWriter.writePixel(i, j, color); 
 			}
 	    }
 
@@ -139,10 +160,10 @@ public class Camera
     */
    public void writeToImage()
    {
-		if (image == null)
+		if (imageWriter == null)
 			throw new MissingResourceException("All fields must be initialized with values", "ImageWriter", "imageWriter");
 		
-		image.writeToImage();
+		imageWriter.writeToImage();
 	}
 
 	/**
@@ -219,7 +240,7 @@ public class Camera
 	 * @return
 	 */
 	public ImageWriter getImage() {
-		return image;
+		return imageWriter;
 	}
 
 	/**
@@ -227,8 +248,8 @@ public class Camera
 	 * @param image
 	 * @return
 	 */
-	public Camera setImage(ImageWriter image) {
-		this.image = image;
+	public Camera setImageWriter(ImageWriter image) {
+		this.imageWriter = image;
 		return this;
 	}
 

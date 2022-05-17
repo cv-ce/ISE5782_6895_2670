@@ -1,4 +1,4 @@
-package unittests;
+/*package unittests;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +15,7 @@ import scene.Scene;
  * Testing basic shadows
  * 
  * @author Dan
- */
+ *
 public class ShadowTests {
 	private Intersectable sphere = new Sphere(new Point(0, 0, -200), 60d) //
 			.setEmission(new Color(BLUE)) //
@@ -29,7 +29,7 @@ public class ShadowTests {
 
 	/**
 	 * Helper function for the tests in this module
-	 */
+	 *
 	void sphereTriangleHelper(String pictName, Triangle triangle, Point spotLocation) {
 		scene.geometries.add(sphere, triangle.setEmission(new Color(BLUE)).setMaterial(trMaterial));
 		scene.lights.add( //
@@ -42,7 +42,7 @@ public class ShadowTests {
 
 	/**
 	 * Produce a picture of a sphere and triangle with point light and shade
-	 */
+	 *
 	@Test
 	public void sphereTriangleInitial() {
 		sphereTriangleHelper("shadowSphereTriangleInitial", //
@@ -52,7 +52,7 @@ public class ShadowTests {
 
 	/**
 	 * Sphere-Triangle shading - move triangle up-right
-	 */
+	 *
 	@Test
 	public void sphereTriangleMove1() {
 		sphereTriangleHelper("shadowSphereTriangleMove2", //
@@ -62,7 +62,7 @@ public class ShadowTests {
 
 	/**
 	 * Sphere-Triangle shading - move triangle upper-righter
-	 */
+	 *
 	@Test
 	public void sphereTriangleMove2() {
 		sphereTriangleHelper("shadowSphereTriangleMove1", //
@@ -72,7 +72,7 @@ public class ShadowTests {
 
 	/**
 	 * Sphere-Triangle shading - move spot closer
-	 */
+	 *
 	@Test
 	public void sphereTriangleSpot1() {
 		sphereTriangleHelper("shadowSphereTriangleSpot1", //
@@ -82,7 +82,7 @@ public class ShadowTests {
 
 	/**
 	 * Sphere-Triangle shading - move spot even more close
-	 */
+	 *
 	@Test
 	public void sphereTriangleSpot2() {
 		sphereTriangleHelper("shadowSphereTriangleSpot2", //
@@ -93,7 +93,7 @@ public class ShadowTests {
 	/**
 	 * Produce a picture of a two triangles lighted by a spot light with a Sphere
 	 * producing a shading
-	 */
+	 *
 	@Test
 	public void trianglesSphere() {
 		scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.15));
@@ -116,4 +116,4 @@ public class ShadowTests {
 				.writeToImage();
 	}
 
-}
+}*/

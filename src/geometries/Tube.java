@@ -6,7 +6,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
-public class Tube extends Intersectable{
+public class Tube extends Geometry{
 
 	final double radius;
 	final Ray axis;
