@@ -95,10 +95,10 @@ public class Polygon extends Geometry {
 	/**
 	 * returns intersection points between a polygon and a given ray
 	 */
-	@Override
+	/*@Override
 	public List<Point> findIntersections(Ray ray) {
 		return null;
-	}
+	}*/
 
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {

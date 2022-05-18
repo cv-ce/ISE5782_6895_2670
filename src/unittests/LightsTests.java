@@ -19,11 +19,11 @@ public class LightsTests {
 	private Scene scene2 = new Scene("Test scene") //
 			.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
 	private Camera camera1 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-			.setVPSize(150, 150) //
-			.setVPDistance(1000);
+			.setViewPlaneSize(150, 150) //
+			.setDistance(1000);
 	private Camera camera2 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-			.setVPSize(200, 200) //
-			.setVPDistance(1000);
+			.setViewPlaneSize(200, 200) //
+			.setDistance(1000);
 
 	private Point[] p = { // The Triangles' vertices:
 			new Point(-110, -110, -150), // the shared left-bottom
@@ -135,7 +135,7 @@ public class LightsTests {
 	/**
 	 * Produce a picture of a sphere lighted by a narrow spot light
 	 */
-	@Test
+	/*@Test
 	public void sphereSpotSharp() {
 		scene1.geometries.add(sphere);
 		scene1.lights
@@ -146,12 +146,12 @@ public class LightsTests {
 				.setRayTracer(new RayTracerBasic(scene1)) //
 				.renderImage() //
 				.writeToImage(); //
-	}
+	}*/
 
 	/**
 	 * Produce a picture of a two triangles lighted by a narrow spot light
 	 */
-	@Test
+	/*@Test
 	public void trianglesSpotSharp() {
 		scene2.geometries.add(triangle1, triangle2);
 		scene2.lights.add(new SpotLight(trCL, trPL, trDL).setNarrowBeam(10).setKl(0.001).setKq(0.00004));
@@ -161,6 +161,5 @@ public class LightsTests {
 				.setRayTracer(new RayTracerBasic(scene2)) //
 				.renderImage() //
 				.writeToImage(); //
-	}
-
+	}*/
 }

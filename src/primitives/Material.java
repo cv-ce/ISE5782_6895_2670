@@ -9,9 +9,9 @@ package primitives;
  */
 public class Material {
 
-	Double3 kS = Double3.ZERO;
-	Double3 kD = Double3.ZERO;
-	int nShininess = 0;
+	public Double3 kS = Double3.ZERO;
+	public Double3 kD = Double3.ZERO;
+	public int nShininess = 0;
 	
 	/**
 	 * refraction factor
