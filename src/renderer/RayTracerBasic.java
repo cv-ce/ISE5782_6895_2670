@@ -113,7 +113,7 @@ public class RayTracerBasic extends RayTracerBase {
             double nl = alignZero(n.dotProduct(l));
             if (nl * nv > 0) { // sign(nl) == sing(nv)
                 Color lightIntensity = lightSource.getIntensity(intersection.point);
-                color = color.add(calcDiffusive(kd, nl, lightIntensity),
+                color = color.add(calcDiffusive(kd, nl, lightIntensity), 
                         calcSpecular(ks, l, n,nl, v, nShininess, lightIntensity));
             }
         }
