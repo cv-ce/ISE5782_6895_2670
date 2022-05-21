@@ -110,7 +110,7 @@ public class RayTracerBasic extends RayTracerBase {
         Color color = Color.BLACK;
         for (LightSource lightSource : myscene.lights) {
             Vector l = lightSource.getL(intersection.point).normalize();
-            double nl = alignZero(n.dotProduct(l));
+            double nl = alignZero(n.dotProduct(l));      
             if (nl * nv > 0) { // sign(nl) == sing(nv)
                 Color lightIntensity = lightSource.getIntensity(intersection.point);
                 color = color.add(calcDiffusive(kd, nl, lightIntensity), 
