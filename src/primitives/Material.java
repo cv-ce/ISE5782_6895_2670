@@ -53,7 +53,23 @@ public class Material {
 		return this;
 	}
 	
+	/**
+	 * sets 'kT', return the object (Builder pattern)
+	 */
+	public Material setKt(Double kT) 
+	{
+		this.kT = new Double3(kT);
+		return this;
+	}
 	
+	/**
+	 * sets 'kR', return the object (Builder pattern)
+	 */
+	public Material setKr(Double kR) 
+	{
+		this.kR = new Double3(kR);
+		return this;
+	}
 	/**
 	 * sets 'nShininess', return the object (Builder pattern)
 	 */

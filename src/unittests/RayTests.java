@@ -29,22 +29,22 @@ public class RayTests
 
 			//TC01: The first point is the closest to the beginning of the ray
 			List<Point >points = List.of(p1,p2,p3);
-			assertEquals("", p1, ray.findClosestPoint(points));
+			assertEquals(p1, ray.findClosestPoint(points));
 			
 			//TC02: The last point is the closest to the beginning of the ray
 			points = List.of(p2,p3,p1);
-			assertEquals("", p1, ray.findClosestPoint(points));
+			assertEquals(p1, ray.findClosestPoint(points));
 			
 			//TC03: An empty list
 			points =null;
-			assertEquals("", null, ray.findClosestPoint(points));
+			assertEquals(null, ray.findClosestPoint(points));
 			
 			
 			// ============ Equivalence Partitions Tests ==============
 			
 			//TC04: A point in the middle of the list is the closest to the beginning of the ray
 			points = List.of(p2,p1,p3);
-			assertEquals("", p1, ray.findClosestPoint(points));	
+			assertEquals(p1, ray.findClosestPoint(points));	
 		}
 		catch (Exception e) {}
 	}

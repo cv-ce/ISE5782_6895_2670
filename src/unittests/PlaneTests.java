@@ -82,7 +82,7 @@ class PlaneTests {
 			assertNull("A included ray has zero intersection points", myPlane.findIntersections(myRay));
 			// TC02: the ray not included in the plane
 			//myRay= new Ray(new Point(0,-5,0), new Vector(5,0,0));//the plane isn't included this ray
-			//assertNull("A non included ray has zero intersection points", myPlane.findIntersections(myRay));
+			assertNull("A non included ray has zero intersection points", myPlane.findIntersections(myRay));
 			
 			//Ray is orthogonal to the plane
 			// TC03:נ�‘ƒ0 before the plane

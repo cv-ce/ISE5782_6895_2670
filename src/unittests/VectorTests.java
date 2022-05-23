@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import primitives.Util;
 import primitives.Vector;
 
 /**
@@ -112,12 +113,12 @@ class VectorTests {
 		//TC01: result of dotProduct of orthogonal vectors should be 0
 		Vector v2 = new Vector(0, 3, -2);
 		double r = v1.dotProduct(v2);
-		assertEquals(r, 0);
+		assertTrue(Util.isZero(r));
 		
 		//TC02: correct result of any 2 vectors
 		v2 = new Vector(1, 4, 5);
 		r = v1.dotProduct(v2);
-		assertEquals(r, 24);
+		assertTrue(Util.isZero(r - 24));
 	}
 
 	/**
@@ -132,7 +133,7 @@ class VectorTests {
 		//TC: correct result of any vector
 		Vector v1 = new Vector(1, 2, 3);
 		double dsr = v1.lengthSquared();
-		assertEquals(dsr, 14);
+		assertTrue(Util.isZero(dsr - 14));
 	}
 
 	/**
@@ -147,7 +148,7 @@ class VectorTests {
 		//TC: correct result of any vector
 		Vector v1 = new Vector(1, 2, 3);
 		double dr = v1.length();
-		assertEquals(dr, Math.sqrt(14));
+		assertTrue(Util.isZero(dr - Math.sqrt(14)));
 	}
 	
 	/**
@@ -163,6 +164,6 @@ class VectorTests {
 		Vector v = new Vector(1, 2, 3);
 		Vector vNorm = v.normalize();
 		double dr = vNorm.length();
-		assertEquals(dr, 1);
+		assertTrue(Util.isZero(dr - 1));
 	}
 }

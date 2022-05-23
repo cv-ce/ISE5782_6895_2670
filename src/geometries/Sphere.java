@@ -14,6 +14,8 @@ public class Sphere extends Geometry {
 	
 	/**
 	 * sphere constructor
+	 * @param p
+	 * @param r
 	 */
 	public Sphere(Point p, double r) {
 		center=p;
@@ -26,8 +28,7 @@ public class Sphere extends Geometry {
 	 * @return
 	 */
 	public Vector getNormal(Point p) {
-		Vector vr = p.subtract(center);
-		return vr.normalize();
+		return (p.subtract(center)).normalize();
 	}
 
 	/**
@@ -52,6 +53,9 @@ public class Sphere extends Geometry {
 		return this.radius;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
 		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
@@ -64,11 +68,9 @@ public class Sphere extends Geometry {
 		double t1 = Util.alignZero(tM+tH);
 		double t2 = Util.alignZero(tM-tH);
 		
-		
 		if (d > radius)
-			return null; // there are no instructions
+			return null;//no intersections
 
-		
 		if (t1 <=0 && t2<=0)
 			return null;
 		
@@ -82,7 +84,6 @@ public class Sphere extends Geometry {
 		else
 			return List.of(new GeoPoint(this,ray.getPoint(t2)));
 	}
-
 
 	/**
 	 * return the intersection points between a sphere and a given ray

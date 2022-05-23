@@ -1,9 +1,9 @@
 package primitives;
 
-public class Vector extends Point{
+public class Vector extends Point {
 
 	/**
-	 * vector constructor #1
+	 * vector constructor #1 (3 'double' parameters)
 	 * @param x
 	 * @param y
 	 * @param z
@@ -11,19 +11,19 @@ public class Vector extends Point{
 	public Vector(double x, double y, double z)  throws IllegalArgumentException
 	{
 		super(x,y,z);
-		Point v0=new Point(0, 0, 0);//vector zero
-		if(this.xyz.equals(v0.xyz))
+		if(this.xyz.equals(Double3.ZERO))
 			throw new IllegalArgumentException("ERROR. This is a zero vector!");
 	}
 	
 	/**
-	 * vector constructor #2
+	 * vector constructor #2 (1 'Double3' parameter)
+	 * @param v
+	 * @throws IllegalArgumentException
 	 */
 	public Vector(Double3 v)  throws IllegalArgumentException
 	{
 		super(v);
-		Point v0=new Point(0, 0, 0);//vector zero
-		if(this.xyz.equals(v0))
+		if(this.xyz.equals(Double3.ZERO))
 			throw new IllegalArgumentException("ERROR. This is a zero vector!");
 	}
 	
@@ -46,8 +46,10 @@ public class Vector extends Point{
 			return false;
 		if (!(obj instanceof Vector))
 			return false;
+		Vector other = (Vector)obj;
+		return this.xyz.equals(other.xyz);
 		///!!!!!!!!!!!maybe check point
-		return true;
+		//return true;
 	}
 	
 	/**
@@ -56,8 +58,7 @@ public class Vector extends Point{
 	public Vector add(Vector v)  throws IllegalArgumentException
 	{
 		Point p=new Point(super.add(v).xyz.d1, super.add(v).xyz.d2, super.add(v).xyz.d3);
-		Vector vReturn=new Vector(p.xyz.d1, p.xyz.d2, p.xyz.d3);
-		return vReturn;
+		return new Vector(p.xyz.d1, p.xyz.d2, p.xyz.d3);
 	}
 	
 	/**
@@ -71,31 +72,34 @@ public class Vector extends Point{
 		double x = this.xyz.d1 * sca;
 		double y = this.xyz.d2 * sca;
 		double z = this.xyz.d3 * sca;
-		Vector v = new Vector(x, y, z);
-		return v;
+		return new Vector(x, y, z);
 	}
-	
+
 	/**
 	 * returns the result of the cross product of vector 'v' and the current vector
+	 * @param v
+	 * @return
+	 * @throws IllegalArgumentException
 	 */
 	public Vector crossProduct(Vector v)  throws IllegalArgumentException
 	{
 		double x = this.xyz.d2 * v.xyz.d3 - this.xyz.d3 * v.xyz.d2;
 		double y = this.xyz.d3 * v.xyz.d1 - this.xyz.d1 * v.xyz.d3;
 		double z = this.xyz.d1 * v.xyz.d2 - this.xyz.d2 * v.xyz.d1;
-		Vector vReturn = new Vector(x, y, z);
-		return vReturn;
+		return new Vector(x, y, z);
 	}
 	
 	/**
 	 * returns the result of the dot product of vector 'v' and the current vector
+	 * @param v
+	 * @return
+	 * @throws IllegalArgumentException
 	 */
 	public double dotProduct(Vector v)  throws IllegalArgumentException
 	{
 		double xx = this.xyz.d1 * v.xyz.d1;
 		double yy = this.xyz.d2 * v.xyz.d2;
 		double zz = this.xyz.d3 * v.xyz.d3;
-		double dp = (xx + yy + zz);
 		// / (this.length() * v.length())
 		/*double cosA = Math.acos(dp);//according to the formula...
 		if(cosA == 1)
@@ -108,7 +112,7 @@ public class Vector extends Point{
 			//sharp angle
 		if(cosA > -1 && cosA < 0)
 			//big angle*/
-		return dp;
+		return (xx + yy + zz);
 	}
 	
 	/**
@@ -134,7 +138,6 @@ public class Vector extends Point{
 		double x = this.xyz.d1 / len;
 		double y = this.xyz.d2 / len;
 		double z = this.xyz.d3 / len;		
-		Vector vReturn = new Vector(x, y, z);
-		return vReturn;
+		return new Vector(x, y, z);
 	}
 }

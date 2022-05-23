@@ -100,6 +100,9 @@ public class Polygon extends Geometry {
 		return null;
 	}*/
 
+	/**
+	 * returns 'GeoPoint' intersection points between a polygon and a given ray
+	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
 		// TODO Auto-generated method stub

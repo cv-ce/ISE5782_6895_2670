@@ -39,7 +39,6 @@ class SphereTests {
 	/**
 	 * Test method for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
 	 */
-
 	@Test
 	void testFindIntsersections() {
 		try {

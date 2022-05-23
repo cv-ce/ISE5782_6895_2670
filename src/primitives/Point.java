@@ -5,7 +5,7 @@ public class Point {
 	Double3 xyz;
 
 	/**
-	 * point constructor #1
+	 * point constructor #1 (3 'double' parameters)
 	 * @param x
 	 * @param y
 	 * @param z
@@ -15,7 +15,8 @@ public class Point {
 	}
 	
 	/**
-	 * point constructor #2
+	 * point constructor #2 (1 'Double3' parameter)
+	 * @param p
 	 */
 	public Point(Double3 p) {
 		xyz=p;
@@ -83,12 +84,13 @@ public class Point {
 	 */
 	public Vector subtract(Point p) {
 		Double3 d3Ret = this.xyz.subtract(p.xyz);
-		Vector vReturn = new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);
-		return vReturn;
+		return new Vector(d3Ret.d1, d3Ret.d2, d3Ret.d3);
 	}
 	
 	/**
 	 * returns the squared distance between 2 points
+	 * @param p
+	 * @return
 	 */
 	public double distanceSquared(Point p) {
 		double xx = this.xyz.d1 - p.xyz.d1;
@@ -99,6 +101,8 @@ public class Point {
 	
 	/**
 	 * returns the distance between 2 points
+	 * @param p
+	 * @return
 	 */
 	public double distance(Point p) {
 		return Math.sqrt(distanceSquared(p));

@@ -1,7 +1,4 @@
-/**
- * 
- */
-/*package unittests.renderer;
+package unittests;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,17 +16,17 @@ import scene.Scene;
  * (with transparency)
  * 
  * @author dzilb
- *
+ */
 public class ReflectionRefractionTests {
 	private Scene scene = new Scene("Test scene");
 
 	/**
 	 * Produce a picture of a sphere lighted by a spot light
-	 *
+	 */
 	@Test
 	public void twoSpheres() {
 		Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setVPSize(150, 150).setVPDistance(1000);
+				.setViewPlaneSize(150, 150).setDistance(1000);
 
 		scene.geometries.add( //
 				new Sphere(new Point(0, 0, -50), 50d).setEmission(new Color(BLUE)) //
@@ -48,13 +45,13 @@ public class ReflectionRefractionTests {
 
 	/**
 	 * Produce a picture of a sphere lighted by a spot light
-	 *
+	 */
 	@Test
 	public void twoSpheresOnMirrors() {
 		Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setVPSize(2500, 2500).setVPDistance(10000); //
+				.setViewPlaneSize(2500, 2500).setDistance(10000); //
 
-		scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), 0.1));
+		scene.setAmbientLight(new AmbientLight(new Color(255, 255, 255), new Double3(0.1)));
 
 		scene.geometries.add( //
 				new Sphere(new Point(-950, -900, -1000), 400d).setEmission(new Color(0, 0, 100)) //
@@ -63,7 +60,7 @@ public class ReflectionRefractionTests {
 						.setMaterial(new Material().setKd(0.25).setKs(0.25).setShininess(20)),
 				new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500), new Point(670, 670, 3000)) //
 						.setEmission(new Color(20, 20, 20)) //
-						.setMaterial(new Material().setKr(1)),
+						.setMaterial(new Material().setKr(1d)),
 				new Triangle(new Point(1500, -1500, -1500), new Point(-1500, 1500, -1500),
 						new Point(-1500, -1500, -2000)) //
 						.setEmission(new Color(20, 20, 20)) //
@@ -82,13 +79,13 @@ public class ReflectionRefractionTests {
 	/**
 	 * Produce a picture of a two triangles lighted by a spot light with a partially
 	 * transparent Sphere producing partial shadow
-	 *
+	 */
 	@Test
 	public void trianglesTransparentSphere() {
 		Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
-				.setVPSize(200, 200).setVPDistance(1000);
+				.setViewPlaneSize(200, 200).setDistance(1000);
 
-		scene.setAmbientLight(new AmbientLight(new Color(WHITE), 0.15));
+		scene.setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)));
 
 		scene.geometries.add( //
 				new Triangle(new Point(-150, -150, -115), new Point(150, -150, -135), new Point(75, 75, -150)) //
@@ -107,4 +104,4 @@ public class ReflectionRefractionTests {
 				.renderImage() //
 				.writeToImage();
 	}
-}*/
+}

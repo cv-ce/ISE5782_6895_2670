@@ -13,6 +13,8 @@ public class Tube extends Geometry{
 	
 	/**
 	 * tube constructor
+	 * @param rad
+	 * @param ray
 	 */
 	public Tube(double rad, Ray ray){
 		this.radius=rad;
@@ -27,8 +29,7 @@ public class Tube extends Geometry{
 	public Vector getNormal(Point p) {
 		double t = axis.getDir().dotProduct(p.subtract(axis.getP0()));
 		Point o = axis.getP0().add(axis.getDir().scale(t));
-		Vector vr = (p.subtract(o)).normalize();
-		return vr;
+		return (p.subtract(o)).normalize();
 	}
 
 	/**
@@ -53,11 +54,12 @@ public class Tube extends Geometry{
 		return this.axis;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
 }

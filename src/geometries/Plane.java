@@ -10,11 +10,11 @@ import primitives.Vector;
 
 public class Plane extends Geometry {
 
-	final Point q0;
-	final Vector normal;
+	/*final*/ Point q0;
+	/*final*/ Vector normal;
 	
 	/**
-	 * plane constructor #1
+	 * plane constructor #1 (3 'Point' parameters)
 	 * @param p1
 	 * @param p2
 	 * @param p3
@@ -30,7 +30,9 @@ public class Plane extends Geometry {
 	}
 	
 	/**
-	 * plane constructor #2
+	 * plane constructor #2 (2 parameters)
+	 * @param p
+	 * @param norm
 	 */
 	public Plane(Point p, Vector norm){
 		q0 = p;
@@ -68,6 +70,9 @@ public class Plane extends Geometry {
 		return "Plane [q0=" + q0 + ", normal=" + normal + "]";
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
 		double nv = normal.dotProduct(ray.getDir());
@@ -96,11 +101,11 @@ public class Plane extends Geometry {
 	
 	/**
 	 * return the intersection points between a plane and a given ray
-	 
+	 */
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
-		double nv = normal.dotProduct(ray.getDir());
+		/*double nv = normal.dotProduct(ray.getDir());
 		if(Util.isZero(nv))
 			return null;
 		try {
@@ -116,7 +121,28 @@ public class Plane extends Geometry {
 		}
 		catch(Exception ex) {
 			return null;
+		}*/
+		double nv = normal.dotProduct(ray.getDir());
+		if (Util.isZero(nv))//äéùø îåëì åìëï àéï ð÷åãú çéúåê
+		{
+			return null;
+		}
+		
+		try 
+		{
+			Vector pSubtractP0 = q0.subtract(ray.getP0());
+			double t = Util.alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+			if(t <= 0)
+			{
+				return null;
+			}
+			return List.of(ray.getPoint(t));
+		}
+		catch(Exception ex) //ä÷øï îúçéìä áð÷åãú äéçåñ ùì äîéùåø åìà ëåììéí àú øàùéú ä÷øï
+		{
+			return null;
 		}
 	}
-	*/
+	
 }

@@ -271,22 +271,22 @@ class GeometriesTests {
 			
 			//=====Some (but not all) shapes are cut (EP)=====//
 			//triangle and plan cut
-			assertEquals("wrong number of intersactions", 2, collection.findIntersections(new Ray(new Point(-4, -3, 2), new Vector(9,5,-1))).size());
+			assertEquals("wrong number of intersections", 2, collection.findIntersections(new Ray(new Point(-4, -3, 2), new Vector(9,5,-1))).size());
 			
 			//=====Only one shape is cut (BVA)=====//
 			//the plane cut
-			assertEquals("wrong number of intersactions", 1, collection.findIntersections(new Ray(new Point(-0.8, -3, 1), new Vector(3.4,3,1.57))).size());
+			assertEquals("wrong number of intersections", 1, collection.findIntersections(new Ray(new Point(-0.8, -3, 1), new Vector(3.4,3,1.57))).size());
 
 			
 			//=====All shapes are cut (BVA)=====//
-			assertEquals("wrong number of intersactions", 4, collection.findIntersections(new Ray(new Point(-4, -3, 0), new Vector(6,3,0.5))).size());			
+			assertEquals("wrong number of intersections", 4, collection.findIntersections(new Ray(new Point(-4, -3, 0), new Vector(6,3,0.5))).size());			
 
 		} 
 		catch (Exception e) 
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			fail("dont need throws exceptions!!!");
+			fail("No need to throw any exception!!!");
 		}
 	}
 }
