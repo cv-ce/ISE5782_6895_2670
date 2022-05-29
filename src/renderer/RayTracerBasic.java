@@ -473,16 +473,14 @@ public class RayTracerBasic extends RayTracerBase {
     {
         return calcColor(geoPoint, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K)).add(myscene.ambientLight.getIntensity());
     }
-
-
-
+    
     /**
      * Function for calculating a point color
      *
      * @return Color
      */
     public Color calcColor(GeoPoint point, Ray ray, int level, Double3 k) {
-        Color color = point.geometry.getEmission();
+    	Color color = point.geometry.getEmission();
         color = color.add(calcLocalEffects(point, ray, k));
         return 1 == level ? color : color.add(calcGlobalEffects(point, ray, level, k));
     }
@@ -523,7 +521,6 @@ public class RayTracerBasic extends RayTracerBase {
         GeoPoint gp = findClosestIntersection (ray);
         return (gp == null ? myscene.background : calcColor(gp, ray, level - 1, kkx).scale(kx));
     }
-
 
     /**
      * Calculate the effects of lights

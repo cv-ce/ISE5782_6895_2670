@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import primitives.Point;
 import primitives.Ray;
 
 /**
@@ -45,10 +46,10 @@ public class Geometries extends Intersectable{
 	/**
 	 * returns the intersections between 'ray' and a geometry              ���� ����� ����???????????
 	 */
-	/*@Override
+	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{	
-		List<Point> temp = new ArrayList<Point>();
+		/*List<Point> temp = new ArrayList<Point>();
 		for (Intersectable intersectable : geometriesLst) 
 		{
 			List<Point> intersection = intersectable.findIntersections(ray);
@@ -58,8 +59,31 @@ public class Geometries extends Intersectable{
 		
 		if (temp.isEmpty())
 			return null;
-		return temp;
-	}*/
+		return temp;*/
+
+	    List<Point> temp = new ArrayList<Point>();
+
+	       for ( Intersectable intersectable : geometriesLst)
+
+	       {
+
+	           List<Point> intersection = intersectable.findIntersections(ray);
+
+	           if (intersection != null)
+
+	               temp.addAll(intersection);
+
+	       }
+
+	       
+
+	       if (temp.isEmpty())
+
+	           return null;
+
+	       return temp;        
+
+	}
 	
 	/**
 	 * 

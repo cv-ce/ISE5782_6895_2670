@@ -185,7 +185,7 @@ public class Ray {
 		if(isZero(t)) {
             throw new IllegalArgumentException("t = 0 produces an illegal vector zero");
         }
-		return this.p0.add(dir.scale(t));
+		return p0.add(dir.scale(t));
 	}
 	
     /**

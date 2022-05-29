@@ -103,8 +103,8 @@ public class Plane extends Geometry {
 	 * return the intersection points between a plane and a given ray
 	 */
 	@Override
-	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
-	{
+	/*public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
+	{*/
 		/*double nv = normal.dotProduct(ray.getDir());
 		if(Util.isZero(nv))
 			return null;
@@ -122,7 +122,7 @@ public class Plane extends Geometry {
 		catch(Exception ex) {
 			return null;
 		}*/
-		double nv = normal.dotProduct(ray.getDir());
+		/*double nv = normal.dotProduct(ray.getDir());
 		if (Util.isZero(nv))//äéùø îåëì åìëï àéï ð÷åãú çéúåê
 		{
 			return null;
@@ -142,7 +142,55 @@ public class Plane extends Geometry {
 		catch(Exception ex) //ä÷øï îúçéìä áð÷åãú äéçåñ ùì äîéùåø åìà ëåììéí àú øàùéú ä÷øï
 		{
 			return null;
+		}*/
+		public List<Point> findIntersections(Ray ray)
+
+		   {
+
+		       double nv = normal.dotProduct(ray.getDir());
+
+		       if (Util.isZero(nv))
+
+		       {
+
+		           return null;
+
+		       }
+
+		      
+		       try
+
+		       {
+
+		           Vector pSubtractP0 = q0.subtract(ray.getP0());
+
+		           //if they are in opossite directions
+
+		           double t = Util.alignZero((normal.dotProduct(pSubtractP0))/nv);
+
+		           if(t <= 0)
+
+		           {
+
+		               return null;
+
+		           }
+
+		           return List.of(ray.getPoint(t));
+
+		       }
+
+		       catch(Exception ex)
+
+		       {
+
+		           return null;
+
+		       }
+
+
+
 		}
-	}
+	//}
 	
 }

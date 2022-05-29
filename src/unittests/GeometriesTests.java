@@ -276,7 +276,6 @@ class GeometriesTests {
 			//=====Only one shape is cut (BVA)=====//
 			//the plane cut
 			assertEquals("wrong number of intersections", 1, collection.findIntersections(new Ray(new Point(-0.8, -3, 1), new Vector(3.4,3,1.57))).size());
-
 			
 			//=====All shapes are cut (BVA)=====//
 			assertEquals("wrong number of intersections", 4, collection.findIntersections(new Ray(new Point(-4, -3, 0), new Vector(6,3,0.5))).size());			
