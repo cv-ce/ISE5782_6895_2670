@@ -16,7 +16,7 @@ public class DirectionalLight extends Light implements LightSource {
 	private Vector direction;
 	
 	/**
-	 * ctor
+	 * constructor
 	 */
 	public DirectionalLight(Color intensity, Vector direction) 
 	{
@@ -45,7 +45,7 @@ public class DirectionalLight extends Light implements LightSource {
 	}
 
 	/**
-	 * 
+	 * returns the distance between  a directional light and a given point (infinity)
 	 */
 	@Override
 	public double getDistance(Point point) 

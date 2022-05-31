@@ -98,94 +98,51 @@ public class Polygon extends Geometry {
 	 */
 	@Override
 	public List<Point> findIntersections(Ray ray) {
+		
+		List<Point> rayPoints = plane.findIntersections(ray);
+	    if (rayPoints == null)
+	        return null;
 
-	       List<Point> rayPoints = plane.findIntersections(ray);
+	    //check if the point in out or on the triangle:
+	    List<Vector> normalsList = new ArrayList<Vector>();
+	    Vector vI;
+	    Vector vIplus1;
 
-	       if (rayPoints == null)
+	    for (int i = 0; i<= vertices.size()-1; i++)
+	    {
+	        vI = vertices.get(i).subtract(ray.getP0());
+	        vIplus1 = vertices.get(i+1).subtract(ray.getP0());
+	        normalsList.add((vI.crossProduct(vIplus1).normalize()));
+	    }
+	    
+	    //the last:
+	    vI = vertices.get(vertices.size()).subtract(ray.getP0());
+	    vIplus1 = vertices.get(0).subtract(ray.getP0());
+	    normalsList.add((vI.crossProduct(vIplus1).normalize()));
 
-	           return null;
+	    //The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
 
+	    int countPositive = 0;
+	    int countNegative = normalsList.size();
 
-
-
-	       //check if the point in out or on the triangle:
-
-	       List<Vector> normalsList = new ArrayList<Vector>();
-
-	       Vector vI;
-
-	       Vector vIplus1;
-
-	       for (int i = 0; i<= vertices.size()-1; i++)
-
-	       {
-
-	           vI = vertices.get(i).subtract(ray.getP0());
-
-	           vIplus1 = vertices.get(i+1).subtract(ray.getP0());
-
-	           normalsList.add((vI.crossProduct(vIplus1).normalize()));
-
-	       }
-
-	       //the last:
-
-	       vI = vertices.get(vertices.size()).subtract(ray.getP0());
-
-	       vIplus1 = vertices.get(0).subtract(ray.getP0());
-
-	       normalsList.add((vI.crossProduct(vIplus1).normalize()));
-
-	       
-
-	       //The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
-
-	       
-
-	       //boolean poasitive = true;
-
-	       int countPositive = 0;
-
-	       int countNegative = normalsList.size();
-
-	       for (Vector vector : normalsList)
-
-	       {
-
-	           if (alignZero((ray.getDir()).dotProduct(vector)) > 0)
-
-	           {
-
-	               countPositive++;
-
-	           }
-
-	           else if (alignZero((ray.getDir()).dotProduct(vector)) <= 0)
-
-	           {
-
-	               countNegative--;
-
-	           }
-
-	           
-
-	       }
-
-	       if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
-
-	       {
-
-	           return null; //there is no instruction point
-
-	       }
-
-	       
-
-
-
-
-	       return rayPoints;
+	    for (Vector vector : normalsList)
+	    {
+	        if (alignZero((ray.getDir()).dotProduct(vector)) > 0)
+	        {
+	            countPositive++;
+	        }
+	        else if (alignZero((ray.getDir()).dotProduct(vector)) <= 0)
+	        {
+	            countNegative--;
+	        }
+	    }
+	    
+	    if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
+	    {
+	        return null; //there are no intersection points
+	    }
+	    
+	    return rayPoints;
 	}
 
 	/**

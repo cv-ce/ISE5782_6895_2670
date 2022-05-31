@@ -10,7 +10,7 @@ import geometries.Geometries;
 import primitives.Color;
 
 /**
- * class Scene for PDS
+ * class Scene - PDS
  * 
  * @author Shirel Avivi 325112670 and Chaya Epstein
  */
@@ -23,8 +23,7 @@ public class Scene
 	public List<LightSource> lights = new LinkedList();
 	
 	/**
-	 * ctor 
-	 * 
+	 * constructor 
 	 * @author Shirel Avivi325112670 and Chaya Epstein
 	 * @param name
 	 * */
@@ -33,7 +32,6 @@ public class Scene
 		geometries = new Geometries();
 	}
 
-	
 	/**
 	 * sets 'background', returns the object (Builder pattern) 
 	 * @author Shirel Avivi325112670 and Chaya Epstein
@@ -45,7 +43,6 @@ public class Scene
 		return this;
 	}
 	
-
 	/**
 	 * sets 'ambientLight', returns the object (Builder pattern)
 	 * @author Shirel Avivi 325112670 and Chaya Epstein
@@ -55,10 +52,8 @@ public class Scene
 	{
 		this.ambientLight = ambientLight;
 		return this;
-		
 	}
 	
-
 	/**
 	 * sets 'geometries', returns the object (Builder pattern)
 	 * @author Shirel Avivi325112670 and Chaya Epstein
@@ -78,5 +73,4 @@ public class Scene
 		this.lights = lights;
 		return this;
 	}
-	
 }

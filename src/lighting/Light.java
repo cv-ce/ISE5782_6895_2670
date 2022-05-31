@@ -13,7 +13,7 @@ public abstract class Light {
 	Color intensity;
 	
 	/**
-	 * ctor
+	 * constructor
 	 */
 	protected Light(Color c) {
 		this.intensity = c;

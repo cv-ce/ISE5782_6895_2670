@@ -16,9 +16,8 @@ public class SpotLight extends PointLight {
 	
 	private Vector direction;
 	
-	
 	/**
-	 * ctor 
+	 * constructor 
 	 */
 	public SpotLight(Color intensity, Point position, Vector direction)  
 	{
@@ -27,7 +26,7 @@ public class SpotLight extends PointLight {
 	}
 	
 	/**
-	 * ctor with all parameters
+	 * constructor with all parameters
 	 */
 	public SpotLight(Color intensity, Point position, double KC, double KL, double KQ, Vector direction)  
 	{
@@ -48,5 +47,4 @@ public class SpotLight extends PointLight {
 			return Color.BLACK;
 		return super.getIntensity(p).scale(pl);
 	}
-	
 }

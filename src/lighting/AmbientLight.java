@@ -14,7 +14,7 @@ public class AmbientLight extends Light{
 	}
 
 	/**
-	 * default ctor
+	 * default constructor
 	 * puts a default color - black, to the ambition light
 	 */
 	public AmbientLight() 

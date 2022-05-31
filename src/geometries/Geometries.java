@@ -24,11 +24,11 @@ public class Geometries extends Intersectable{
 		geometriesLst = new ArrayList<Intersectable>();
 	}
 	
-	 /** Constructor. Receives a list of geometries and puts them in a new arrayList
-	 * 
+	/**
+	 * Constructor. Receives a list of geometries and puts them in a new arrayList 
 	 * @author Shirel Avivi 325112670 and Chaya Epstein
 	 * @param geometries
-	 * */
+	 */
 	public Geometries(Intersectable... geometries) {
 		geometriesLst = new ArrayList<Intersectable>(Arrays.asList(geometries));
 	}
@@ -49,57 +49,34 @@ public class Geometries extends Intersectable{
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{	
-		/*List<Point> temp = new ArrayList<Point>();
-		for (Intersectable intersectable : geometriesLst) 
-		{
-			List<Point> intersection = intersectable.findIntersections(ray);
-			if (!intersection.isEmpty())
-				temp.addAll(intersection); 
-		}
-		
-		if (temp.isEmpty())
-			return null;
-		return temp;*/
-
 	    List<Point> temp = new ArrayList<Point>();
-
-	       for ( Intersectable intersectable : geometriesLst)
-
-	       {
-
-	           List<Point> intersection = intersectable.findIntersections(ray);
-
-	           if (intersection != null)
-
-	               temp.addAll(intersection);
-
-	       }
-
-	       
-
-	       if (temp.isEmpty())
-
-	           return null;
-
-	       return temp;        
-
+	    for ( Intersectable intersectable : geometriesLst)
+	    {
+	        List<Point> intersection = intersectable.findIntersections(ray);
+	        if (intersection != null)
+	           temp.addAll(intersection);
+	    }
+	    if (temp.isEmpty())
+	       return null;
+	    return temp;        
 	}
 	
 	/**
-	 * 
+	 * returns 'GeoPoint' intersection points between a geometry and a ray
 	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-	List<GeoPoint> temp = new ArrayList<GeoPoint>();
-	for (Intersectable intersectable : geometriesLst)
-	{
-	List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
-	if (intersection != null)
-	temp.addAll(intersection);
-	}
+	
+		List<GeoPoint> temp = new ArrayList<GeoPoint>();
+		for (Intersectable intersectable : geometriesLst)
+		{
+			List<GeoPoint> intersection = intersectable.findGeoIntersections(ray);
+			if (intersection != null)
+				temp.addAll(intersection);
+		}
 
-	if (temp.isEmpty())
-	return null;
-	return temp;
+		if (temp.isEmpty())
+			return null;
+		return temp;
 	}
 }

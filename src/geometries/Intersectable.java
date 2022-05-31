@@ -38,7 +38,7 @@ public abstract class Intersectable {
 	    }
 	    
 	    /**
-	     * 
+	     * overrides 'equals'
 	     */
 		@Override
 		public boolean equals(Object obj) 
@@ -51,7 +51,7 @@ public abstract class Intersectable {
 		}
 		
 		/**
-		 * 
+		 * overrides 'toString'
 		 */
 		@Override
 		public String toString() {
@@ -71,7 +71,7 @@ public abstract class Intersectable {
 	}
 
 	/**
-	 * 
+	 * Auxiliary function - returns 'GeoPoint' intersection points between a geometry and a given ray
 	 * @param ray
 	 * @return
 	 * @throws IllegalArgumentException
@@ -79,7 +79,7 @@ public abstract class Intersectable {
 	protected abstract List<GeoPoint> findGeoIntersectionsHelper (Ray ray) throws IllegalArgumentException;
 
 	/**
-	 * 
+	 * returns 'GeoPoint' intersection points between a geometry and a given ray (using findGeoIntersectionsHelper function)
 	 * @param ray
 	 * @return
 	 * @throws IllegalArgumentException

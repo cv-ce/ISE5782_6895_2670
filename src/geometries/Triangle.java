@@ -40,44 +40,56 @@ public class Triangle extends Polygon {
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
-		/*List<Point>	pInters = plane.findIntersections(ray);
+		List<Point> rayPoints = plane.findIntersections(ray);
+	    if (rayPoints == null)
+	        return null;
+	    //check if the point in out or on the triangle:
+	    Vector v1 = vertices.get(0).subtract(ray.getP0());
+	    Vector v2 = vertices.get(1).subtract(ray.getP0());
+	    Vector v3 = vertices.get(2).subtract(ray.getP0());
 
-		//check if the found point is in the triangle's boarders or not...
-		Vector v1 = vertices.get(0).subtract(ray.getP0());
-		Vector v2 = vertices.get(1).subtract(ray.getP0());
-		Vector v3 = vertices.get(2).subtract(ray.getP0());
-		
-		Vector n1 = v1.crossProduct(v2).normalize();
-		Vector n2 = v2.crossProduct(v3).normalize();
-		Vector n3 = v3.crossProduct(v1).normalize();
-		
-		//if all Vi*Ni have the same sign --> the point is in the triangle
-		if (Util.alignZero(n1.dotProduct(ray.getDir())) > 0 && Util.alignZero(n2.dotProduct(ray.getDir())) > 0 && Util.alignZero(n3.dotProduct(ray.getDir())) > 0)
-			{
-				return pInters;
-			}
-			else if (Util.alignZero(n1.dotProduct(ray.getDir())) < 0 && Util.alignZero(n2.dotProduct(ray.getDir())) < 0 && Util.alignZero(n3.dotProduct(ray.getDir())) < 0)
-			{
-				return pInters;
-			}
-			if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
-				return null; //there are no intersections
-			return null;	*/
-		/*List<Point> rayPoints = plane.findIntersections(ray);
+        Vector n1 = v1.crossProduct(v2).normalize();
+        Vector n2 = v2.crossProduct(v3).normalize();
+        Vector n3 = v3.crossProduct(v1).normalize();
+	       
+        //The point is inside the triangle if all calculations have the same sign (+/-)
+        if (Util.alignZero(n1.dotProduct(ray.getDir())) > 0 && Util.alignZero(n2.dotProduct(ray.getDir())) > 0 && Util.alignZero(n3.dotProduct(ray.getDir())) > 0)
+        {
+            return rayPoints;
+        }
+        else if (Util.alignZero(n1.dotProduct(ray.getDir())) < 0 && Util.alignZero(n2.dotProduct(ray.getDir())) < 0 && Util.alignZero(n3.dotProduct(ray.getDir())) < 0)
+        {
+            return rayPoints;
+        }
+        if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
+            return null; //there are no intersection points
+        return null;
+	}
+
+	/**
+	 * returns 'GeoPoint' intersection points between a triangle and a given ray
+	 */
+	@ Override
+	public List<GeoPoint> findGeoIntersectionsHelper (Ray ray)
+	{
+		List<GeoPoint> rayPoints = plane.findGeoIntersectionsHelper(ray);
 		if (rayPoints == null)
 			return null;
+		for(GeoPoint P: rayPoints )
+		{
+			P.geometry=this;
+		}
+
 		//check if the point in out or on the triangle:
 		Vector v1 = vertices.get(0).subtract(ray.getP0());
 		Vector v2 = vertices.get(1).subtract(ray.getP0());
 		Vector v3 = vertices.get(2).subtract(ray.getP0());
-		
+
 		Vector n1 = v1.crossProduct(v2).normalize();
 		Vector n2 = v2.crossProduct(v3).normalize();
 		Vector n3 = v3.crossProduct(v1).normalize();
 
-		
-		//The point is inside if all 𝒗 ∙ 𝑵𝒊 have the same sign (+/-)
-		
+		//The point is inside the triangle if all calculations have the same sign (+/-)
 		if (Util.alignZero(n1.dotProduct(ray.getDir())) > 0 && Util.alignZero(n2.dotProduct(ray.getDir())) > 0 && Util.alignZero(n3.dotProduct(ray.getDir())) > 0)
 		{
 			return rayPoints;
@@ -87,105 +99,7 @@ public class Triangle extends Polygon {
 			return rayPoints;
 		}
 		if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
-			return null; //there is no instruction point
-		return null;*/
-
-	       List<Point> rayPoints = plane.findIntersections(ray);
-
-	       if (rayPoints == null)
-
-	           return null;
-
-
-
-
-	       //check if the point in out or on the triangle:
-
-	       Vector v1 = vertices.get(0).subtract(ray.getP0());
-
-	       Vector v2 = vertices.get(1).subtract(ray.getP0());
-
-	       Vector v3 = vertices.get(2).subtract(ray.getP0());
-
-	       
-
-	       Vector n1 = v1.crossProduct(v2).normalize();
-
-	       Vector n2 = v2.crossProduct(v3).normalize();
-
-	       Vector n3 = v3.crossProduct(v1).normalize();
-
-
-
-
-	       
-
-	       //The point is inside if all the calculations have the same sign (+/-)
-
-	       
-
-	       if (Util.alignZero(n1.dotProduct(ray.getDir())) > 0 && Util.alignZero(n2.dotProduct(ray.getDir())) > 0 && Util.alignZero(n3.dotProduct(ray.getDir())) > 0)
-
-	       {
-
-	           return rayPoints;
-
-	       }
-
-	       else if (Util.alignZero(n1.dotProduct(ray.getDir())) < 0 && Util.alignZero(n2.dotProduct(ray.getDir())) < 0 && Util.alignZero(n3.dotProduct(ray.getDir())) < 0)
-
-	       {
-
-	           return rayPoints;
-
-	       }
-
-	       if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
-
-	           return null; //there is no instruction point
-
-	       return null;
-
+			return null; //there are no instruction points
+		return null;
 	}
-	
-	@ Override
-	public List<GeoPoint> findGeoIntersectionsHelper (Ray ray)
-	{
-	List<GeoPoint> rayPoints = plane.findGeoIntersectionsHelper(ray);
-	if (rayPoints == null)
-	return null;
-	for(GeoPoint P: rayPoints )
-	{
-	P.geometry=this;
-	}
-
-	//check if the point in out or on the triangle:
-	Vector v1 = vertices.get(0).subtract(ray.getP0());
-	Vector v2 = vertices.get(1).subtract(ray.getP0());
-	Vector v3 = vertices.get(2).subtract(ray.getP0());
-
-	Vector n1 = v1.crossProduct(v2).normalize();
-	Vector n2 = v2.crossProduct(v3).normalize();
-	Vector n3 = v3.crossProduct(v1).normalize();
-
-
-	//The point is inside if all have the same sign (+/-)
-
-	if (Util.alignZero(n1.dotProduct(ray.getDir())) > 0 && Util.alignZero(n2.dotProduct(ray.getDir())) > 0 && Util.alignZero(n3.dotProduct(ray.getDir())) > 0)
-	{
-	return rayPoints;
-	}
-	else if (Util.alignZero(n1.dotProduct(ray.getDir())) < 0 && Util.alignZero(n2.dotProduct(ray.getDir())) < 0 && Util.alignZero(n3.dotProduct(ray.getDir())) < 0)
-	{
-	return rayPoints;
-	}
-	if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
-	return null; //there is no instruction point
-	return null;
-	}
-	}
-
-	
-//}
-
-
+}

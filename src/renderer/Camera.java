@@ -312,7 +312,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 /**
- * Class Camera The that creates rays from the camera towards the various geometries of the scene.
+ * Class Camera creates rays from the camera towards the various geometries of the scene.
 */
 public class Camera
 {
@@ -327,7 +327,7 @@ public class Camera
 	private RayTracerBase rayTracer;
 
 	/**
-	 * This constructor creates new camera
+	 * camera constructor
 	 * @param vTo Vector value
 	 * @param vUp Vector value
 	 * @param p0 Point value
@@ -338,7 +338,7 @@ public class Camera
 		if(!isZero(vTo.dotProduct(vUp))) // if vTo doesn't orthogonal to vUp
 			throw new IllegalArgumentException("vUp doesnt ortogonal to vTo");
 		
-		//all the vectors need to be normalize:
+		//all the vectors should be normalized
 		this.vTo = vTo.normalize();
 		this.vUp = vUp.normalize();
 		vRight = (vTo.crossProduct(vUp)).normalize();
@@ -348,7 +348,7 @@ public class Camera
 	}
 	
 	/**
-	 * Update function for View Plane size  
+	 * Updates view plane's size  
 	 * @param width double value
 	 * @param height double value
 	 * @return Camera	 
@@ -361,7 +361,7 @@ public class Camera
 	
 	
 	/**
-	 * Update function for distance
+	 * Updates distance
 	 * @param distance double value
 	 * @return Camera	 
 	 */
@@ -371,7 +371,7 @@ public class Camera
 	}
 
 	/**
-	 * The function is responsible for creating the rays from the camera
+	 * creates camera rays
 	 * @param nX int value - resolution of pixel in X
 	 * @param nY int value - resolution of pixel in Y
 	 * @param j int value - index of column
@@ -410,11 +410,8 @@ public class Camera
 
 	}
 	
-	
-
-
 	/**
-	 * Getter for p0
+	 * returns 'p0'
 	 * @return Point value for p0	 
 	 */
 	public Point getP0() {
@@ -422,8 +419,7 @@ public class Camera
 	}
 
 	/**
-	 * Getter for vUp
-	 * 
+	 * returns 'vUp'
 	 * @return Vector value for vUp	 
 	 */
 	public Vector getvUp() {
@@ -431,7 +427,7 @@ public class Camera
 	}
 
 	/**
-	 * Getter for vTo
+	 * returns 'vTo'
 	 * @return Vector value for vTo	 
 	 */
 	public Vector getvTo() {
@@ -439,8 +435,7 @@ public class Camera
 	}
 	
 	/**
-	 * Getter for vRight
-	 * 
+	 * returns 'vRight'
 	 * @return Vector value for vRight	 
 	 */
 	public Vector getvRight() {
@@ -448,8 +443,7 @@ public class Camera
 	}
 
 	/**
-	 * Getter for width
-	 * 
+	 * returns 'width'
 	 * @return double value for width	 
 	 */
 	public double getWidth() {
@@ -457,7 +451,7 @@ public class Camera
 	}
 
 	/**
-	 * Getter for height
+	 * returns 'height'
 	 * @return double value for height	 
 	 */
 	public double getHeight() {
@@ -465,7 +459,7 @@ public class Camera
 	}
 
 	/**
-	 * Getter for distance
+	 * returns 'distance'
 	 * @return double value for distance	 
 	 */
 	public double getDistance() {
@@ -473,7 +467,7 @@ public class Camera
 	}
 
     /**
-     * setter for image writer
+     * sets 'imageWriter'
      * @param i1
      * @return camera
      */
@@ -482,7 +476,7 @@ public class Camera
 		return this;
 	}
      /***
-      * setter for ray tracer
+      * sets rayTracer
       * @param r1 :RayTracerBase
       * @return
       */
@@ -492,7 +486,7 @@ public class Camera
 	}
 	
 	/**
-	 * this function  creates the picture
+	 * creates a picture
 	 * @throws MissingResourceException
 	 * @throws IllegalArgumentException
 	 */
@@ -521,9 +515,8 @@ public class Camera
 			for (int j = 0; j < nY; j++)	
 			{
 				imageWriter.writePixel(j, i, castRay(nX,nY,j,i));
-		   }
-			
-	     }
+			}
+	    }
        }
 	   catch(MissingResourceException e)
        {
@@ -547,7 +540,7 @@ public class Camera
 	 }
 	 
 	/**
-	 * A function that creates a grid of lines
+	 * creates a grid of lines
 	 * @param interval int value
 	 * @param color Color value
 	 * */
@@ -555,7 +548,6 @@ public class Camera
 	{
 		if (imageWriter == null)
 			throw new MissingResourceException("this function must have values in all the fileds", "ImageWriter", "i");
-		
 
 		for (int i1 = 0; i1 < imageWriter.getNx(); i1++)
 		{
@@ -565,10 +557,10 @@ public class Camera
 				    imageWriter.writePixel(i1, j, color); 
 			}
 		}
-
 	}
+	
 	/**
-	 * A function that finally creates the image.
+	 * creates an image!!!
 	 * This function delegates the function of a class imageWriter
 	 * */
 	public void writeToImage()
@@ -578,6 +570,4 @@ public class Camera
 		
 		imageWriter.writeToImage();
 	}
-
-	
 }

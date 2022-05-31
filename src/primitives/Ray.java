@@ -133,7 +133,7 @@ public class Ray {
     private static final double DELTA = 0.1;
     
     /**
-     * ray ctor with 2 parameters
+     * ray constructor with 2 parameters
      * @param p
      * @param v
      */
@@ -146,7 +146,7 @@ public class Ray {
 	}
 
    /**
-    * ray ctor with 3 parameters
+    * ray constructor with 3 parameters
     * @param head
     * @param lightDirection
     * @param n

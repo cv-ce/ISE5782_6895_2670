@@ -19,7 +19,7 @@ public class PointLight extends Light implements LightSource {
 	private double kQ = 0;
 	
 	/**
-	 * ctor
+	 * constructor
 	 */
 	public PointLight(Color intensity, Point p) {
 		super(intensity);
@@ -27,7 +27,7 @@ public class PointLight extends Light implements LightSource {
 	}
 	
 	/**
-	 * ctor with all parameters
+	 * constructor with all parameters
 	 */
 	public PointLight(Color intensity, Point p, double kc, double kl, double kq) {
 		super(intensity);
@@ -94,7 +94,7 @@ public class PointLight extends Light implements LightSource {
 	}
 	
 	/**
-	 * 
+	 * returns the distance between a pointLight and a given point
 	 */
 	@Override
 	public double getDistance(Point point) 

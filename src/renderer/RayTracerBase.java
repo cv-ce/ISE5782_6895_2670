@@ -26,7 +26,7 @@ public abstract class RayTracerBase
 
 	/**
 	 * Statement of an abstract function that calculates the color for the nearest intersection point, 
-	 * if no intersection points are returned the color of the background	
+	 * if no intersection points are returned - return the color of the background	
 	 * @author Shirel Avivi 325112670 and Chaya Epstein
 	 * @param ray Ray value
 	 * @throws Exception

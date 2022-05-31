@@ -54,11 +54,11 @@ public class Sphere extends Geometry {
 	}
 
 	/**
-	 * 
+	 * returns 'GeoPoint' intersection points between a sphere and a given ray
 	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
-		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
+		if (ray.getP0().equals(center)) // if the beginning of the ray is the sphere's center, the point is on the radius
 			return List.of(new GeoPoint(this,ray.getPoint(radius)));
 		//List<Point3D> rayPoints = new ArrayList<Point3D>();
 		Vector u = center.subtract(ray.getP0());
@@ -80,7 +80,6 @@ public class Sphere extends Geometry {
 		{
 			return List.of(new GeoPoint(this,ray.getPoint(t1)));
 		}
-
 		else
 			return List.of(new GeoPoint(this,ray.getPoint(t2)));
 	}
@@ -91,74 +90,23 @@ public class Sphere extends Geometry {
 	@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
-		/*if (ray.getP0().equals(center)) // if the ray begins at the center, the point is on the radius
+		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
 			return List.of(ray.getPoint(radius));
-		Vector u = center.subtract(ray.getP0());
-		double tM = Util.alignZero(ray.getDir().dotProduct(u));
-		double d = Util.alignZero(Math.sqrt(u.length()*u.length()- tM * tM));
-		double tH = Util.alignZero(Math.sqrt(radius*radius - d*d));
-		double t1 = Util.alignZero(tM+tH);
-		double t2 = Util.alignZero(tM-tH);
-		
-		if (d > radius)
-			return null; // if there are no instructions
-		if (t1 <= 0 && t2 <= 0)
-			return null;
-		if (t1 > 0 && t2 > 0)
-			return List.of(ray.getPoint(t1), ray.getPoint(t2));
-		if (t1 > 0)
-			return List.of(ray.getPoint(t1));
-		else
-			return List.of(ray.getPoint(t2));	*/
-
-	       if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
-
-	           return List.of(ray.getPoint(radius));
-
-	       Vector u = center.subtract(ray.getP0());
-
-	       double tM = Util.alignZero(ray.getDir().dotProduct(u));
-
-	       double d = Util.alignZero(Math.sqrt(u.length()*u.length()- tM * tM));
-
-	       double tH = Util.alignZero(Math.sqrt(radius*radius - d*d));
-
-	       double t1 = Util.alignZero(tM+tH);
-
-	       double t2 = Util.alignZero(tM-tH);
-
-	               
-
-	       if (d > radius)
-
-	           return null; // there are no intersections
-
-	       
-
-	       if (t1 <=0 && t2<=0)
-
-	           return null;
-
-	       
-
-	       if (t1 > 0 && t2 >0)
-
-	           return List.of(ray.getPoint(t1),ray.getPoint(t2));
-
-	       if (t1 > 0)
-
-	       {
-
-	           return List.of(ray.getPoint(t1));
-
-	       }
-
-
-
-
-	       else
-
-	           return List.of(ray.getPoint(t2));    
+	    Vector u = center.subtract(ray.getP0());
+	    double tM = Util.alignZero(ray.getDir().dotProduct(u));
+	    double d = Util.alignZero(Math.sqrt(u.length()*u.length()- tM * tM));
+	    double tH = Util.alignZero(Math.sqrt(radius*radius - d*d));
+	    double t1 = Util.alignZero(tM+tH);
+	    double t2 = Util.alignZero(tM-tH);
+	    if (d > radius)
+	        return null; // there are no intersections
+	    if (t1 <=0 && t2<=0)
+	        return null;	       
+	    if (t1 > 0 && t2 >0)
+	    	return List.of(ray.getPoint(t1),ray.getPoint(t2));
+	    if (t1 > 0)
+	    	return List.of(ray.getPoint(t1));
+	    else
+	    	return List.of(ray.getPoint(t2));    
 		}
-		
 }
