@@ -46,6 +46,14 @@ public class RayTracerBasic extends RayTracerBase
     
     private static final double DELTA = 0.1;
 
+    /**
+     * 
+     * @param l
+     * @param n
+     * @param geopoint
+     * @param ls
+     * @return
+     */
     private boolean unshaded(Vector l, Vector n, GeoPoint geopoint, LightSource ls)
     {
         Vector lightDirection = l.scale(-1); // from point to light source
@@ -65,12 +73,6 @@ public class RayTracerBasic extends RayTracerBase
         return true; //in case all intersections are in between lightDistance and gp.
     }
 
-
-
-
-    
-    
-    
 	/**
 	 * A function that find the most closet point to the ray
 	 * @param ray Ray value
@@ -83,6 +85,7 @@ public class RayTracerBasic extends RayTracerBase
 			return  null;
 		return ray.findClosestGeoPoint(intersections);
 	}
+	
     /**
      * calculates the color of a geopoint 
      * @param gp geopoint
@@ -94,6 +97,7 @@ public class RayTracerBasic extends RayTracerBase
     	return calcColor(gp, ray, MAX_CALC_COLOR_LEVEL, new Double3(INITIAL_K))
     			.add(myscene.ambientLight.getIntensity());
     }
+    
     /**
      * calcualulate the color with all its parameters
      * @param gp
@@ -111,11 +115,11 @@ public class RayTracerBasic extends RayTracerBase
     	return 1 == level ? color : color.add(calcGlobalEffects(gp, ray, level, k));
     }
     
-    /**
-     * help function that calculate the local color
+   /**
+    * help function that calculate the local color
     * @param intersection GeoPoint value
-     * @param ray Ray value
-    * */  
+    * @param ray Ray value
+    */  
 	private Color calcLocalEffects(GeoPoint intersection, Ray ray, Double3 k) 
 	{
 		Vector v = ray.getDir().normalize();
@@ -144,6 +148,7 @@ public class RayTracerBasic extends RayTracerBase
 		}
 		return color;
 	}
+	
 	/**
 	 * A function that calculate the globals effects of the color-reflection and transparency
 	 * @param intersection GeoPoint value
@@ -167,13 +172,20 @@ public class RayTracerBasic extends RayTracerBase
     	return color;
     }
     
+    /**
+     * 
+     * @param ray
+     * @param level
+     * @param kx
+     * @param kkx
+     * @return
+     */
     private Color calcGlobalEffect(Ray ray, int level, Double3 kx, Double3 kkx) 
     {
     	GeoPoint gp = findClosestIntersection (ray);
     	return (gp == null ? myscene.background : calcColor(gp, ray, level-1, kkx)
     	.scale(kx));
     }
-
 
     /**
      * calculate the specular color
@@ -194,6 +206,7 @@ public class RayTracerBasic extends RayTracerBase
             return Color.BLACK;
         return lightIntensity.scale(ks.scale(Math.pow(d,nShininess)));
     }
+    
      /**
       * calculate the diffusive light
       * @param kd the level of the diffuse
@@ -206,9 +219,7 @@ public class RayTracerBasic extends RayTracerBase
            nl = -nl;
         return lightIntensity.scale(kd).scale(nl);
     }
-    
-
-    
+       
 	/**
 	 * A function that calculates the refracted rays.
 	 * @param normal Vector value
@@ -240,8 +251,6 @@ public class RayTracerBasic extends RayTracerBase
 		return new Ray(point, r, normal);
 	}
 
-
-	
 	/**
 	 * A function that allows partial shading
 	 * @param light LightSource value
@@ -268,9 +277,6 @@ public class RayTracerBasic extends RayTracerBase
 					return Double3.ZERO;
 			}
 		}
-
 		return ktr;
-
 	}
-
 }
