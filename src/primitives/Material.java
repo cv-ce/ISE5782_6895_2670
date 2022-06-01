@@ -24,7 +24,7 @@ public class Material {
 	public Double3 kR = Double3.ZERO;
 	
 	/**
-	 * sets 'kD', return the object (Builder pattern)
+	 * sets 'kD', returns the object (Builder pattern)
 	 */
 	public Material setKd(Double3 kD) 
 	{
@@ -39,7 +39,7 @@ public class Material {
 	}
 	
 	/**
-	 * sets 'kS', return the object (Builder pattern)
+	 * sets 'kS', returns the object (Builder pattern)
 	 */
 	public Material setKs(Double3 kS) 
 	{
@@ -54,7 +54,7 @@ public class Material {
 	}
 	
 	/**
-	 * sets 'kT', return the object (Builder pattern)
+	 * sets 'kT', returns the object (Builder pattern)
 	 */
 	public Material setKt(Double kT) 
 	{
@@ -63,7 +63,7 @@ public class Material {
 	}
 	
 	/**
-	 * sets 'kR', return the object (Builder pattern)
+	 * sets 'kR', returns the object (Builder pattern)
 	 */
 	public Material setKr(Double kR) 
 	{
@@ -71,7 +71,7 @@ public class Material {
 		return this;
 	}
 	/**
-	 * sets 'nShininess', return the object (Builder pattern)
+	 * sets 'nShininess', returns the object (Builder pattern)
 	 */
 	public Material setShininess(int nShininess) 
 	{
