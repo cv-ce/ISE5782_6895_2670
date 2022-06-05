@@ -87,7 +87,7 @@ public class Sphere extends Geometry {
 	/**
 	 * return the intersection points between a sphere and a given ray
 	 */
-	@Override
+	/*@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
 		if (ray.getP0().equals(center)) // if the begin of the ray in the center, the point, is on the radius
@@ -108,5 +108,5 @@ public class Sphere extends Geometry {
 	    	return List.of(ray.getPoint(t1));
 	    else
 	    	return List.of(ray.getPoint(t2));    
-		}
+		}*/
 }

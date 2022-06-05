@@ -96,7 +96,7 @@ public class Polygon extends Geometry {
 	/**
 	 * returns intersection points between a polygon and a given ray
 	 */
-	@Override
+	/*@Override
 	public List<Point> findIntersections(Ray ray) {
 		
 		List<Point> rayPoints = plane.findIntersections(ray);
@@ -137,13 +137,13 @@ public class Polygon extends Geometry {
 	        }
 	    }
 	    
-	    if (countPositive != normalsList.size() /*all normals in the positive side*/ && countNegative != 0 /*all normals in the negative side*/)
+	    if (countPositive != normalsList.size() /*all normals in the positive side* && countNegative != 0 /*all normals in the negative side*)
 	    {
 	        return null; //there are no intersection points
 	    }
 	    
 	    return rayPoints;
-	}
+	}*/
 
 	/**
 	 * returns 'GeoPoint' intersection points between a polygon and a given ray

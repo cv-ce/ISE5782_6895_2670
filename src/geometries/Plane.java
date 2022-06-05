@@ -102,7 +102,7 @@ public class Plane extends Geometry {
 	/**
 	 * return the intersection points between a plane and a given ray
 	 */
-	@Override
+	/*@Override
 	public List<Point> findIntersections(Ray ray) {
 		
 		double nv = normal.dotProduct(ray.getDir());
@@ -125,5 +125,5 @@ public class Plane extends Geometry {
         {
         	return null;
         }
-	}
+	}*/
 }

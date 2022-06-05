@@ -37,7 +37,7 @@ public class Triangle extends Polygon {
 	/**
 	 * returns intersection points between a triangle and a given ray
 	 */
-	@Override
+	/*@Override
 	public List<Point> findIntersections(Ray ray) throws IllegalArgumentException
 	{
 		List<Point> rayPoints = plane.findIntersections(ray);
@@ -64,7 +64,7 @@ public class Triangle extends Polygon {
         if (Util.isZero(n1.dotProduct(ray.getDir())) || Util.isZero(n2.dotProduct(ray.getDir())) || Util.isZero(n3.dotProduct(ray.getDir())))
             return null; //there are no intersection points
         return null;
-	}
+	}*/
 
 	/**
 	 * returns 'GeoPoint' intersection points between a triangle and a given ray
