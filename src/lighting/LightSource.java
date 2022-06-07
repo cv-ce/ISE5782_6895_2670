@@ -31,4 +31,5 @@ public interface LightSource {
 	 * @return
 	 */
 	double getDistance(Point point);
+
 }

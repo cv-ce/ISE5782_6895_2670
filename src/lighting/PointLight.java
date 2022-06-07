@@ -18,6 +18,9 @@ public class PointLight extends Light implements LightSource {
 	private double kL = 0;
 	private double kQ = 0;
 	
+	/** SOFT SHADOW **/
+	protected double radius = 0d;
+
 	/**
 	 * constructor
 	 */
@@ -101,4 +104,13 @@ public class PointLight extends Light implements LightSource {
 	{
 		return position.distance(point);
 	}
+	
+	/** SOFT SHADOW **/
+	public double getRadius() {
+        return radius;
+    }
+	public Point getPosition() {
+        return position;
+	}
+    
 }

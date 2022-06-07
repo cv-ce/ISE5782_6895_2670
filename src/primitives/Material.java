@@ -8,7 +8,7 @@ package primitives;
  *
  */
 public class Material {
-
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	public Double3 kS = Double3.ZERO;
 	public Double3 kD = Double3.ZERO;
 	public int nShininess = 0;
@@ -70,6 +70,7 @@ public class Material {
 		this.kR = new Double3(kR);
 		return this;
 	}
+	
 	/**
 	 * sets 'nShininess', returns the object (Builder pattern)
 	 */
@@ -77,5 +78,19 @@ public class Material {
 	{
 		this.nShininess = nShininess;
 		return this;
+	}
+	
+	
+	public double getKR() {
+		return kR.d1;
+	}
+	public double getKT() {
+		return kT.d1;
+	}
+	public double getKS() {
+		return kS.d1;
+	}
+	public double getKD() {
+		return kD.d1;
 	}
 }
