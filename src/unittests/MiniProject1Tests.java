@@ -54,13 +54,11 @@ public class MiniProject1Tests {
 										new SpotLight(new Color(java.awt.Color.RED), new Point(15, -70, -70)/*, 10*/, new Vector(1, 0.4, 0))));
 
 			ImageWriter imageWriter = new ImageWriter("MiniProject1NoSoftShadows", 600, 600);
-			//Render render = new Render() //
-					camera.setImageWriter(imageWriter) //
-					//.setCamera(camera) //
-					.setRayTracer(new RayTracerBasic(scene))//
+					camera.setImageWriter(imageWriter); //
+					camera.setRayTracer(new RayTracerBasic(scene));//
 
-			/*render.*/.renderImage()//
-			/*render.*/.writeToImage();		
+			camera.renderImage();//
+			camera.writeToImage();		
 		}
 		
 		
@@ -101,8 +99,8 @@ public class MiniProject1Tests {
 					//.setCamera(camera) //
 					.setRayTracer(new RayTracerBasic(scene))//
 
-			.renderImage(/*300*/)//
-			.writeToImage();
+					.renderImage(/*300*/)//
+					.writeToImage();
 		
 		}
 		
@@ -143,7 +141,7 @@ public class MiniProject1Tests {
 					//.setCamera(camera) //
 					.setRayTracer(new RayTracerBasic(scene))//
 
-			.renderImage(/*100*/)//
+			.renderImage(100)//
 			.writeToImage();
 		
 		}

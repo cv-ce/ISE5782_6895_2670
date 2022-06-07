@@ -52,4 +52,10 @@ public class DirectionalLight extends Light implements LightSource {
 	{
 		return Double.POSITIVE_INFINITY;
 	}
+	
+	/*SOFT SHADOW*/
+	@Override
+	public double getGridSize() {
+		return 0;
+	}
 }

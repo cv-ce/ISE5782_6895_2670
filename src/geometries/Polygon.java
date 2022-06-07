@@ -151,6 +151,61 @@ public class Polygon extends Geometry {
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray) throws IllegalArgumentException {
 		// TODO Auto-generated method stub
-		return null;
+		//return null;
+		
+			Vector[] p0pi= new Vector[vertices.size()];
+			for (int i=0; i<vertices.size(); i++) {
+				try {
+					p0pi[i]=vertices.get(i).subtract(ray.getP0());
+				}
+				//if got here - it means that the ray starts on one of the polygon's vertices, so there are no intersections:
+				catch(IllegalArgumentException iae) {
+					return null;
+				}
+			}
+			Vector[] normals= new Vector[vertices.size()];
+			for (int i=0; i<p0pi.length-1; i++) {
+				try {
+					normals[i]=p0pi[i].crossProduct(p0pi[i+1]);
+				}
+				//if got here - it means that the ray is on the polygon's plane (continuation of one of the edges),
+				//so there are no intersections:
+				catch(IllegalArgumentException iae) {
+					return null;
+				}
+			}
+			//get the normal for the last vertex:
+			try {
+				normals[p0pi.length-1]=p0pi[p0pi.length-1].crossProduct(p0pi[0]);
+			}
+			//if got here - it means that the ray is on the polygon's plane (continuation of the edge),
+			//so there are no intersections:
+			catch(IllegalArgumentException iae) {
+				return null;
+			}
+			
+			
+			int sign=1; //helping variable - 1 if positive, 0 if negative
+			double vni=ray.getDir().dotProduct(normals[0]);
+			if(isZero(vni))
+				return null;
+			if(alignZero(vni)<0)
+				sign=0;
+			for (int i=1; i<normals.length; i++) {
+				vni=ray.getDir().dotProduct(normals[i]);
+				if(isZero(vni)||(sign==1 && alignZero(vni)<0)||(sign==0 && alignZero(vni)>0))
+					return null;
+			}
+			
+			
+			List<GeoPoint> intersections=plane.findGeoIntersections(ray);
+			if(intersections==null)
+				return null;
+			else
+				return List.of(new GeoPoint(this,intersections.get(0).point));
+
+		
+		
+
 	}
 }

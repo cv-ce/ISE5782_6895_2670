@@ -75,7 +75,7 @@ public class Plane extends Geometry {
 	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
-		double nv = normal.dotProduct(ray.getDir());
+		/*double nv = normal.dotProduct(ray.getDir());
 		if (Util.isZero(nv))
 		{
 			return null;
@@ -95,8 +95,28 @@ public class Plane extends Geometry {
 		catch(Exception ex) 
 		{
 			return null;
+		}*/
+		try {
+			Vector pq=q0.subtract(ray.getP0());
+			double numerator=normal.dotProduct(pq);
+			if(Util.isZero(numerator))
+				return null;
+			double denominator=normal.dotProduct(ray.getDir());
+			if(Util.isZero(denominator))
+				return null;
+			double t=Util.alignZero(numerator/denominator);
+			if(t<=0)
+				return null;
+			
+			return List.of(new GeoPoint(this,ray.getPoint(t)));
+		}
+		//if got here - it means that the ray starts on the plane's q0 dot, so there are no intersections:
+		catch(IllegalArgumentException iae) {
+			return null;
 		}
 	}
+
+
 
 	
 	/**

@@ -58,7 +58,7 @@ public class Sphere extends Geometry {
 	 */
 	@Override
 	protected List<GeoPoint> findGeoIntersectionsHelper(Ray ray)throws IllegalArgumentException  {
-		if (ray.getP0().equals(center)) // if the beginning of the ray is the sphere's center, the point is on the radius
+		/*if (ray.getP0().equals(center)) // if the beginning of the ray is the sphere's center, the point is on the radius
 			return List.of(new GeoPoint(this,ray.getPoint(radius)));
 		//List<Point3D> rayPoints = new ArrayList<Point3D>();
 		Vector u = center.subtract(ray.getP0());
@@ -81,7 +81,40 @@ public class Sphere extends Geometry {
 			return List.of(new GeoPoint(this,ray.getPoint(t1)));
 		}
 		else
-			return List.of(new GeoPoint(this,ray.getPoint(t2)));
+			return List.of(new GeoPoint(this,ray.getPoint(t2)));*/
+		
+		
+		try	{
+			Vector u=center.subtract(ray.getP0());
+			double tm=Util.alignZero(ray.getDir().dotProduct(u));
+			double dSquared=Util.alignZero(u.dotProduct(u)-tm*tm);
+			if(Util.alignZero(radius*radius-dSquared)<=0)
+				return null;
+			double th=Util.alignZero(Math.sqrt(radius*radius-dSquared));
+			double t1=Util.alignZero(tm-th);
+			double t2=Util.alignZero(tm+th);
+			if(t1>0) {
+				if(t2>0)
+					return List.of(new GeoPoint(this,ray.getPoint(t1)),new GeoPoint(this,ray.getPoint(t2)));
+				else
+					return List.of(new GeoPoint(this,ray.getPoint(t1)));	
+			}
+			else {
+				if(t2>0)
+					return List.of(new GeoPoint(this,ray.getPoint(t2)));
+				else
+					return null;				
+			}
+		}
+		//if got here - it means that the ray starts on the sphere's center,
+		//so the only intersection is ray.p0 + sphere.radius*ray.dir :
+		catch(IllegalArgumentException iae) {
+			return List.of(new GeoPoint(this,ray.getPoint(radius)));
+		}
+
+		
+		
+		
 	}
 
 	/**

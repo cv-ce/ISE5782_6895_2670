@@ -83,7 +83,7 @@ public abstract class RayTracerBase {
 	 * @param numOfRays the number of rays wanted in the beam when using a beam of rays for picture improvement
 	 * @return The color of the starting-point of the given main-ray
 	 */
-	//public abstract Color traceRay(Ray ray, int numOfRays);
+	public abstract Color traceRay(Ray ray, int numOfRays);
 
 	
 	/**
@@ -95,6 +95,6 @@ public abstract class RayTracerBase {
 	 * @param adaptiveSupersampling whether the adaptive-supersampling picture improvement is required
 	 * @return The color of the starting-point of the given main-ray
 	 */
-	//public abstract Color traceRay(Ray ray, int numOfRays, boolean adaptiveSupersampling);
+	public abstract Color traceRay(Ray ray, int numOfRays, boolean adaptiveSupersampling);
 
 }

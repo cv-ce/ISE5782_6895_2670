@@ -140,4 +140,21 @@ public class Vector extends Point {
 		double z = this.xyz.d3 / len;		
 		return new Vector(x, y, z);
 	}
+	
+	/*SOFT SHADOW*/
+	/**
+	 * Getting a vector which is orthogonal to this vector 
+	 * @return An orthogonal vector to this vector
+	 */
+	public Vector findOrthogonal() {
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        double Ax= Math.abs(x), Ay= Math.abs(y), Az= Math.abs(z);
+        if (Ax < Ay)
+            return Ax < Az ?  new Vector(0, -z, y) : new Vector(-y, x, 0);
+        else
+            return Ay < Az ?  new Vector(z, 0, -x) : new Vector(-y, x, 0);
+    }
+
 }

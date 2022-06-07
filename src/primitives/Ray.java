@@ -122,6 +122,8 @@ package primitives;
 import static primitives.Util.isZero;
 
 import geometries.Intersectable;
+import geometries.Intersectable.GeoPoint;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -198,12 +200,35 @@ public class Ray {
                 : findClosestGeoPoint(points.stream().map(p -> new Intersectable.GeoPoint(null, p)).toList()).point;
     }
 
+    
+    
+    /**
+	 * Get the closest geoPoint to the ray's starting-point out of a given collection of geoPoints
+	 * @param points A collection of geoPoints
+	 * @return The geoPoint which is the closest to the ray's starting-point
+	 */
+	public GeoPoint findClosestGeoPoint(List<GeoPoint> points) {
+		GeoPoint retPoint=null;
+		double currMinDis = Integer.MAX_VALUE;
+		for (GeoPoint point : points) {
+			double pointDis=Util.alignZero(this.p0.distance(point.point));
+			if(pointDis < currMinDis) {
+				retPoint = point;
+				currMinDis = pointDis;
+			}
+		}
+		
+		return retPoint;
+	}
+
+    
+    
     /**
      * returns the 'GeoPoint' point which is the closest to the beginning of the ray  
      * @param geoPoints
      * @return closePoint
      */
-    public Intersectable.GeoPoint findClosestGeoPoint(List<Intersectable.GeoPoint> geoPoints) {
+    /*public Intersectable.GeoPoint findClosestGeoPoint(List<Intersectable.GeoPoint> geoPoints) {
 
         if (geoPoints == null)//In case of an empty list
             return null;
@@ -213,7 +238,7 @@ public class Ray {
             	closePoint = p;												//is bigger than the distance between 'p' and 'p0'
         }
         return closePoint;
-    }
+    }*/
 
     /**
      * overrides 'equals'
